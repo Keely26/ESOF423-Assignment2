@@ -16,9 +16,7 @@
 package net.sf.jftp.gui.tasks;
 
 import net.sf.jftp.*;
-import net.sf.jftp.net.*;
 import net.sf.jftp.system.LocalIO;
-import net.sf.jftp.util.*;
 
 import java.io.*;
 
@@ -29,11 +27,11 @@ public class AutoRemover
     {
         if(type.equals("local"))
         {
-            File f = new File(JFtp.localDir.getPath() + file);
+            File f = new File(JFtp.getLocalDir().getPath() + file);
 
             if(f.isDirectory())
             {
-                LocalIO.cleanLocalDir(file, JFtp.localDir.getPath());
+                LocalIO.cleanLocalDir(file, JFtp.getLocalDir().getPath());
                 f.delete();
             }
             else

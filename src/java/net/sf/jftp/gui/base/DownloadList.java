@@ -45,7 +45,7 @@ import net.sf.jftp.system.logging.Log;
 
 public class DownloadList extends HPanel implements ActionListener
 {
-    public Hashtable sizeCache = new Hashtable();
+    Hashtable sizeCache = new Hashtable();
     private ProgressBarList list = new ProgressBarList();
     private Hashtable downloads = new Hashtable();
     private long oldtime = 0;
@@ -555,5 +555,13 @@ public class DownloadList extends HPanel implements ActionListener
         oldtime = time;
 
         return true;
+    }
+
+    public Hashtable getSizeCache() {
+        return sizeCache;
+    }
+
+    public void setSizeCache(Hashtable sizeCache) {
+        this.sizeCache = sizeCache;
     }
 }

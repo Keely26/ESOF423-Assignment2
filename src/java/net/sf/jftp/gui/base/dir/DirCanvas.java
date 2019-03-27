@@ -25,7 +25,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
 
 public class DirCanvas extends JPanel implements MouseListener
@@ -53,13 +52,13 @@ public class DirCanvas extends JPanel implements MouseListener
             if(tmp != null)
             {
                 target.setPath(tmp);
-                target.fresh();
+                target.refresh();
             }
         }
         else
         {
             PathChanger p = new PathChanger("remote");
-            target.fresh();
+            target.refresh();
         }
     }
 

@@ -204,7 +204,12 @@ public class FtpTransfer extends Transfer implements Runnable
         con.setConnectionHandler(handler);
         con.setConnectionListeners(listeners);
 
-        int status = con.login(user, pass);
+        int status = 0;
+        try {
+            status = con.login(user, pass);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if(status == FtpConnection.LOGIN_OK)
         {
@@ -215,11 +220,19 @@ public class FtpTransfer extends Transfer implements Runnable
             {
                 if(newName != null)
                 {
-                    transferStatus = con.upload(file, newName);
+                    try {
+                        transferStatus = con.upload(file, newName);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 else
                 {
-                    transferStatus = con.upload(file);
+                    try {
+                        transferStatus = con.upload(file);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             else

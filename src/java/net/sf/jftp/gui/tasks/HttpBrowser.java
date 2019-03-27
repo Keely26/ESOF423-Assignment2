@@ -16,15 +16,9 @@
 package net.sf.jftp.gui.tasks;
 
 import net.sf.jftp.*;
-import net.sf.jftp.config.*;
-import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.net.*;
 import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.util.*;
 
 import java.awt.*;
-
-import java.io.*;
 
 import java.util.*;
 
@@ -98,13 +92,13 @@ public class HttpBrowser extends JInternalFrame implements HyperlinkListener
                     String tmp = url.substring(url.lastIndexOf("/"));
 
                     Vector listeners = new Vector();
-                    listeners.add(JFtp.localDir);
+                    listeners.add(JFtp.getLocalDir());
 
                     if(!url.endsWith(".htm") && !url.endsWith(".html") &&
                            (tmp.indexOf(".") >= 0))
                     {
                         JFtp.statusP.startTransfer(url,
-                                                   JFtp.localDir.getPath(),
+                                                   JFtp.getLocalDir().getPath(),
                                                    listeners,
                                                    JFtp.getConnectionHandler());
                     }

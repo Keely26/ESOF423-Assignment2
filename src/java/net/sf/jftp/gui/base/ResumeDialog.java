@@ -19,7 +19,6 @@ import net.sf.jftp.*;
 import net.sf.jftp.config.*;
 import net.sf.jftp.gui.base.dir.DirEntry;
 import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.net.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -27,7 +26,6 @@ import java.awt.event.*;
 import java.io.*;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
 
 public class ResumeDialog extends HFrame implements ActionListener
@@ -50,7 +48,7 @@ public class ResumeDialog extends HFrame implements ActionListener
         text.append("A file named " + dirEntry.file +
                     " already exists.                       \n\n");
 
-        File f = new File(JFtp.localDir.getPath() + dirEntry.file);
+        File f = new File(JFtp.getLocalDir().getPath() + dirEntry.file);
         long diff = 0;
 
         diff = dirEntry.getRawSize() - f.length();
@@ -103,7 +101,7 @@ public class ResumeDialog extends HFrame implements ActionListener
         {
             this.dispose();
 
-            File f = new File(JFtp.localDir.getPath() + dirEntry.file);
+            File f = new File(JFtp.getLocalDir().getPath() + dirEntry.file);
             f.delete();
 
             transfer();

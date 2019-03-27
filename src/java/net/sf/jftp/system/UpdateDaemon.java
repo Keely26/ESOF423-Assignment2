@@ -17,10 +17,8 @@ package net.sf.jftp.system;
 
 import net.sf.jftp.JFtp;
 import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.*;
 import net.sf.jftp.gui.base.LocalDir;
 import net.sf.jftp.gui.base.RemoteDir;
-import net.sf.jftp.util.*;
 
 
 public class UpdateDaemon implements Runnable
@@ -79,7 +77,7 @@ public class UpdateDaemon implements Runnable
                 //System.out.print(":");
                 if(rem > 0)
                 {
-                    ((RemoteDir) jftp.remoteDir).fresh();
+                    ((RemoteDir) jftp.remoteDir).refresh();
 
                     //System.out.print("R");
                     rem = 0;
@@ -97,7 +95,7 @@ public class UpdateDaemon implements Runnable
 
                 if(loc > 0)
                 {
-                    ((LocalDir) jftp.localDir).fresh();
+                    ((LocalDir) jftp.getLocalDir()).refresh();
 
                     //System.out.print("L");
                     loc = 0;

@@ -19,8 +19,7 @@ public class FtpUpload implements Logger, ConnectionListener
 
  private ConnectionHandler handler = new ConnectionHandler();
 
- public FtpUpload(String host, String dir, String file)
- {
+ public FtpUpload(String host, String dir, String file) throws Exception {
  	Log.setLogger(this);
 
  	FtpConnection con = new FtpConnection(host);
@@ -42,8 +41,7 @@ public class FtpUpload implements Logger, ConnectionListener
 	con.upload(file);
  }
 
- public static void main(String argv[])
- {
+ public static void main(String argv[]) throws Exception {
     if(argv.length == 3)
     { 
 	    FtpUpload f = new FtpUpload(argv[0], argv[2], argv[1]); 

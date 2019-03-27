@@ -97,7 +97,7 @@ public class DirPanel extends HPanel implements Dir
         this.con = con;
     }
 
-    public void fresh()
+    public void refresh()
     {
     }
 

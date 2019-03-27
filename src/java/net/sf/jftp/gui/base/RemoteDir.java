@@ -134,7 +134,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
      * RemoteDir constructor.
      */
     //TODO: make private
-    public RemoteDir() {
+    public RemoteDir() throws Exception {
         type = "remote";
         con = new FilesystemConnection();
         con.addConnectionListener(this);
@@ -149,7 +149,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
     /**
      * RemoteDir constructor.
      */
-    public RemoteDir(String path) {
+    public RemoteDir(String path) throws Exception {
         type = "remote";
         this.path = path;
         con = new FilesystemConnection();
@@ -329,19 +329,31 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
                     String tgt = (String) jl.getSelectedValue().toString();
 
                     if (index < 0) {
-                        doChdir(path + tgt);
+                        try {
+                            doChdir(path + tgt);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
                     } else if ((dirEntry == null) || (dirEntry.length < index) ||
                             (dirEntry[index] == null)) {
                         return;
                     } else if (dirEntry[index].isDirectory()) {
-                        doChdir(path + tgt);
+                        try {
+                            doChdir(path + tgt);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
                     } else if (dirEntry[index].isLink()) {
-                        if (!con.chdir(path + tgt)) {
-                            showContentWindow(path +
-                                            dirEntry[index].toString(),
-                                    dirEntry[index]);
+                        try {
+                            if (!con.chdir(path + tgt)) {
+                                showContentWindow(path +
+                                                dirEntry[index].toString(),
+                                        dirEntry[index]);
 
-                            //blockedTransfer(index);
+                                //blockedTransfer(index);
+                            }
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
                         }
                     } else {
                         showContentWindow(path + dirEntry[index].toString(),
@@ -381,7 +393,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
         setVisible(true);
     }
 
-    public void doChdir(String path) {
+    public void doChdir(String path) throws Exception {
 
         JFtp.setAppCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         con.chdir(path);
@@ -566,7 +578,11 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
             }
 
             unlock(false);
-            fresh();
+            try {
+                fresh();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         } else if (e.getActionCommand().equals("mkdir")) {
             Creator c = new Creator("Create:", con);
 
@@ -598,7 +614,11 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
             //String tmp = UITool.getPathFromDialog();
             //setPath(tmp);
         } else if (e.getActionCommand().equals("fresh")) {
-            fresh();
+            try {
+                fresh();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         } else if (e.getActionCommand().equals("->")) {
             blockedTransfer(-2);
         } else if (e.getActionCommand().equals("<-")) {
@@ -700,9 +720,17 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
                 Settings.showDateNoSize = false;
             }
 
-            fresh();
+            try {
+                fresh();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         } else if (e.getActionCommand().equals("cdUp")) {
-            JFtp.remoteDir.getCon().chdir("..");
+            try {
+                JFtp.remoteDir.getCon().chdir("..");
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         } else if (e.getActionCommand().equals("rn")) {
             Object[] target = jl.getSelectedValues();
 
@@ -724,7 +752,11 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
                     Log.debug("Rename failed.");
                 } else {
                     Log.debug("Successfully renamed.");
-                    fresh();
+                    try {
+                        fresh();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         }
@@ -748,10 +780,14 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
                     lock(false);
                 }
 
-                transfer(tmpindex);
+                try {
+                    transfer(tmpindex);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (block) {
-                    JFtp.localDir.fresh();
+                    JFtp.localDir.refresh();
                     unlock(false);
                 }
             }
@@ -793,7 +829,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
      * Do a hard UI refresh - do no longe call this directly, use
      * safeUpdate() instead if possible.
      */
-    public void fresh() {
+    public void fresh() throws Exception {
         Log.out("fresh() called.");
 
         Cursor x = null;
@@ -1019,7 +1055,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
     /**
      * Transfers all selected files
      */
-    public synchronized void transfer() {
+    public synchronized void transfer() throws Exception {
         boolean[] bFileSelected = new boolean[dirEntry.length + 1];
         DirEntry[] cacheEntry = new DirEntry[dirEntry.length];
         System.arraycopy(dirEntry, 0, cacheEntry, 0, cacheEntry.length);
@@ -1048,7 +1084,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
      * <p>
      * WARNING: If you do anything here, please check LocalDir.startTransfer(), too!
      */
-    public void startTransfer(DirEntry entry) {
+    public void startTransfer(DirEntry entry) throws Exception {
         if (con instanceof FtpConnection &&
                 JFtp.localDir.getCon() instanceof FtpConnection) {
             if (entry.isDirectory()) {
@@ -1067,26 +1103,6 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
             int status = checkForExistingFile(entry);
 
             if (status >= 0) {
-                //--------------------------------------------
-                // dirty bugfix for sizes that would be
-                // messed up otherwise
-
-                /*
-                boolean flag = false;
-                String file = entry.file;
-
-                if(file.endsWith("/") && (file.length() > 1))
-                {
-                    flag = true;
-                    file = file.substring(0, file.lastIndexOf("/"));
-                }
-
-                file = file.substring(file.lastIndexOf("/") + 1);
-
-                if(flag)
-                {
-                    file = file + "/";
-                } */
                 long s = entry.getRawSize();
                 JFtp.dList.sizeCache.put(entry.file, new Long(s));
 
@@ -1136,11 +1152,10 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
     /**
      * Transfers single file, or all selected files if index is -1
      */
-    public void transfer(int i) {
+    public void transfer(int i) throws Exception {
         if (i == -2) {
             transfer();
 
-            return;
         } else if (dirEntry[i].selected) {
             startTransfer(dirEntry[i]);
         }
@@ -1281,7 +1296,7 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
 
             dList.fresh();
             JFtp.localDir.getCon().removeFileOrDir(StringUtils.getFile(url));
-            JFtp.localDir.fresh();
+            JFtp.localDir.refresh();
         } catch (Exception ex) {
             Log.debug("File error: " + ex);
         }
@@ -1298,7 +1313,11 @@ public class RemoteDir extends DirComponent implements ListSelectionListener,
             String tmp = ((DirEntry) o).toString();
 
             if (tmp.endsWith("/")) {
-                con.chdir(tmp);
+                try {
+                    con.chdir(tmp);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             } else {
                 showContentWindow(path + tmp, (DirEntry) o);
             }

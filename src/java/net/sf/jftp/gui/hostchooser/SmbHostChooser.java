@@ -321,19 +321,19 @@ public class SmbHostChooser extends HFrame implements ActionListener,
              if(useLocal)
              {
                      JFtp.statusP.jftp.addLocalConnection(htmp, con);
-                JFtp.localDir.fresh();
+                JFtp.localDir.refresh();
              }
              else
              {
                       JFtp.statusP.jftp.addConnection(htmp, con);
-                JFtp.remoteDir.fresh();
+                JFtp.remoteDir.refresh();
              }
 
             //JFtp.remoteDir.setCon(con);
             //con.setLocalPath(JFtp.localDir.getCon().getPWD());
             //con.addConnectionListener((ConnectionListener) JFtp.localDir);
             //con.addConnectionListener((ConnectionListener) JFtp.remoteDir);
-            //JFtp.remoteDir.fresh();
+            //JFtp.remoteDir.refresh();
             }
             catch(Exception ex)
             {

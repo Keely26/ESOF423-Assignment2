@@ -17,12 +17,9 @@ package net.sf.jftp.gui.tasks;
 
 import net.sf.jftp.*;
 import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.net.*;
 
 import java.awt.*;
 import java.awt.event.*;
-
-import java.io.*;
 
 
 public class PathChanger extends HFrame implements ActionListener
@@ -64,7 +61,7 @@ public class PathChanger extends HFrame implements ActionListener
 
             if(type.equals("local"))
             {
-                JFtp.localDir.getCon().chdir(text.getText());
+                JFtp.getLocalDir().getCon().chdir(text.getText());
             }
         }
     }

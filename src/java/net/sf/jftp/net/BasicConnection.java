@@ -39,11 +39,11 @@ public interface BasicConnection
 
     public boolean cdup();
 
-    public boolean mkdir(String dirName);
+    public boolean mkdir(String dirName) throws Exception;
 
     public void list() throws IOException;
 
-    public boolean chdir(String p);
+    public boolean chdir(String p) throws Exception;
 
     public boolean chdirNoRefresh(String p);
 
@@ -61,13 +61,13 @@ public interface BasicConnection
 
     public int handleDownload(String file);
 
-    public int handleUpload(String file);
+    public int handleUpload(String file) throws Exception;
 
     public int download(String file);
 
-    public int upload(String file);
+    public int upload(String file) throws Exception;
 
-    public int upload(String file, InputStream in);
+    public int upload(String file, InputStream in) throws Exception;
 
     public InputStream getDownloadInputStream(String file);
 

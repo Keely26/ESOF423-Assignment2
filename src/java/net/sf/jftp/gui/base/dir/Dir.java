@@ -37,7 +37,7 @@ public interface Dir
 
     public void setType(String type);
 
-    public void fresh();
+    public void refresh();
 
     public void lock(boolean isNotification);
 

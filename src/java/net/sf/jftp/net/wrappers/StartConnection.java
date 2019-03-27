@@ -92,8 +92,8 @@ public class StartConnection
                     JFtp.statusP.jftp.addLocalConnection(htmp, con);
                     
                     if(con.isConnected()) {
-                    	JFtp.localDir.setPath("");
-                    	JFtp.localDir.fresh();
+                    	JFtp.getLocalDir().setPath("");
+                    	JFtp.getLocalDir().refresh();
                     }
                 }
                 else
@@ -101,7 +101,7 @@ public class StartConnection
                     JFtp.statusP.jftp.addConnection(htmp, con);                   
                     if(con.isConnected()) {
                     	JFtp.remoteDir.setPath("");
-                    	JFtp.remoteDir.fresh();
+                    	JFtp.remoteDir.refresh();
                     }
                 }
 
@@ -109,7 +109,7 @@ public class StartConnection
                 //con.setLocalPath(JFtp.localDir.getCon().getPWD());
                 //con.addConnectionListener((ConnectionListener) JFtp.localDir);
                 //con.addConnectionListener((ConnectionListener) JFtp.remoteDir);
-                //JFtp.remoteDir.fresh();
+                //JFtp.remoteDir.refresh();
                 //BUGFIX
                 searchValue[0] = "SMB";
                 searchValue[1] = htmp;

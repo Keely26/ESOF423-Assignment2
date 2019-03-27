@@ -21,7 +21,6 @@ import net.sf.jftp.gui.framework.*;
 import net.sf.jftp.net.*;
 import net.sf.jftp.system.StringUtils;
 import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.util.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -31,8 +30,6 @@ import java.io.*;
 import java.util.*;
 
 import javax.swing.*;
-import javax.swing.JComponent.*;
-import javax.swing.event.*;
 
 
 public class DownloadQueue extends HPanel implements ActionListener
@@ -136,14 +133,14 @@ public class DownloadQueue extends HPanel implements ActionListener
     }
 
     /*
-    public void fresh()
+    public void refresh()
     {
     }
     */
     public void addFtp(String file)
     {
         Log.debug("Remote File" + JFtp.remoteDir.getPath() + file +
-                  "Local File" + JFtp.localDir.getPath() + file + "HostName" +
+                  "Local File" + JFtp.getLocalDir().getPath() + file + "HostName" +
                   JFtp.hostinfo.hostname);
 
         QueueRecord rec = new QueueRecord();
@@ -152,7 +149,7 @@ public class DownloadQueue extends HPanel implements ActionListener
         rec.username = JFtp.hostinfo.username;
         rec.password = JFtp.hostinfo.password;
         rec.port = JFtp.hostinfo.port;
-        rec.local = JFtp.localDir.getPath();
+        rec.local = JFtp.getLocalDir().getPath();
         rec.remote = JFtp.remoteDir.getPath();
         rec.file = file;
         queue.add(rec);

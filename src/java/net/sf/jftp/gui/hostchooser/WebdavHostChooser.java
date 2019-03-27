@@ -19,7 +19,6 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -194,7 +193,7 @@ public class WebdavHostChooser extends HFrame implements ActionListener,
             if(useLocal)
             {
                 con = new WebdavConnection(htmp, utmp, ptmp,
-                                           (ConnectionListener) JFtp.localDir);
+                                           (ConnectionListener) JFtp.getLocalDir());
                 JFtp.statusP.jftp.addLocalConnection("Webdav", con);
                 con.chdir(htmp);
             }
@@ -202,7 +201,11 @@ public class WebdavHostChooser extends HFrame implements ActionListener,
             {
                 con = new WebdavConnection(htmp, utmp, ptmp,
                                            (ConnectionListener) JFtp.remoteDir);
-                JFtp.statusP.jftp.addConnection("Webdav", con);
+                try {
+                    JFtp.statusP.jftp.addConnection("Webdav", con);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
                 con.chdir(htmp);
             }
 

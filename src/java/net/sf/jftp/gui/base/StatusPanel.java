@@ -28,7 +28,6 @@ import net.sf.jftp.gui.tasks.NativeHttpBrowser;
 import net.sf.jftp.net.*;
 import net.sf.jftp.net.wrappers.HttpTransfer;
 import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.util.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -152,11 +151,11 @@ public class StatusPanel extends HPanel implements ActionListener
         if(e.getActionCommand().equals("go") || (e.getSource() == address))
         {
             Vector listeners = new Vector();
-            listeners.add(JFtp.localDir);
+            listeners.add(JFtp.getLocalDir());
 
             String url = address.getText().trim();
 
-            startTransfer(url, JFtp.localDir.getPath(), listeners,
+            startTransfer(url, JFtp.getLocalDir().getPath(), listeners,
                           JFtp.getConnectionHandler());
         }
         else if(e.getActionCommand().equals("smbcon"))

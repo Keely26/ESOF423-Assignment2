@@ -18,7 +18,6 @@ package net.sf.jftp.gui.base;
 import net.sf.jftp.*;
 import net.sf.jftp.gui.framework.*;
 import net.sf.jftp.system.logging.Log;
-import net.sf.jftp.util.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -59,7 +58,7 @@ public class Properties extends HFrame implements ActionListener
     {
         if(type.equals("local"))
         {
-            File f = new File(JFtp.localDir.getPath() + file);
+            File f = new File(JFtp.getLocalDir().getPath() + file);
             sizeL.setText("Size: " + Long.toString(f.length()) + " bytes");
 
             try

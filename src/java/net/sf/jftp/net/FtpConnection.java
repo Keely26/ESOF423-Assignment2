@@ -174,8 +174,6 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * Does also fire directory update and connection initialized event if successful or
 	 * connection failed event if failed.
 	 *
-	 * @param username The username
-	 * @param password  The password
 	 * @param initCWD The initial remote working directory
 	 * @param crlfx \n, \r, \r\n, CR, LF or CRLF - line break style of the server
 	 * @return  WRONG_LOGIN_DATA, OFFLINE, GENERIC_FAILED or LOGIN_OK status code
@@ -209,8 +207,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param password  The password
 	 * @return  WRONG_LOGIN_DATA, OFFLINE, GENERIC_FAILED or LOGIN_OK status code
 	 */
-	public int login(String username, String password)
-	{
+	public int login(String username, String password) throws Exception {
 		this.username = username;
 		this.password = password;
 
@@ -486,7 +483,6 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 *
 	 * The Array should be in sync with the other sort*-Methods
 	 *
-	 * @param file The file containing the raw server listing, usually Settings.ls_out
 	 * @return An int-array of sizes containing W, R or DENIED for each file
 	 */
 	public int[] getPermissions()
@@ -1462,8 +1458,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param file The file to upload
 	 * @return An int-statuscode, NEW_TRANSFER_SPAWNED,TRANSFER_FAILED or TRANSFER_SUCCESSFUL
 	 */
-	public int handleUpload(String file)
-	{
+	public int handleUpload(String file) throws Exception {
 		return handleUpload(file, null);
 	}
 
@@ -1474,8 +1469,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param realName The file to rename the uploaded file to
 	 * @return An int-statuscode, NEW_TRANSFER_SPAWNED,TRANSFER_FAILED or TRANSFER_SUCCESSFUL
 	 */
-	public int handleUpload(String file, String realName)
-	{
+	public int handleUpload(String file, String realName) throws Exception {
 		if(Settings.getEnableMultiThreading() &&
 				(!Settings.getNoUploadMultiThreading()))
 		{
@@ -1521,8 +1515,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param file The file to upload
 	 * @return An int returncode
 	 */
-	public int upload(String file)
-	{
+	public int upload(String file) throws Exception {
 		return upload(file, file);
 	}
 
@@ -1534,8 +1527,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param realName The file to rename the uploaded file to
 	 * @return An int responsecode
 	 */
-	public int upload(String file, String realName)
-	{
+	public int upload(String file, String realName) throws Exception {
 		return upload(file, realName, null);
 	}
 
@@ -1546,8 +1538,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param in InputStream to read from
 	 * @return An int responsecode
 	 */
-	public int upload(String file, InputStream in)
-	{
+	public int upload(String file, InputStream in) throws Exception {
 		return upload(file, file, in);
 	}
 
@@ -1560,8 +1551,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param in InputStream to read from
 	 * @return An int responsecode
 	 */
-	public int upload(String file, String realName, InputStream in)
-	{
+	public int upload(String file, String realName, InputStream in) throws Exception {
 		hasUploaded = true;
 		Log.out("ftp upload started: " + this);
 
@@ -1775,8 +1765,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 		return TRANSFER_SUCCESSFUL;
 	}
 
-	private int uploadDir(String dir)
-	{
+	private int uploadDir(String dir) throws Exception {
 		//System.out.println("up");
 		if(dir.endsWith("\\"))
 		{
@@ -2245,8 +2234,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param dirName The name of the directory to create
 	 * @return True if successful, false otherwise
 	 */
-	public boolean mkdir(String dirName)
-	{
+	public boolean mkdir(String dirName) throws Exception {
 		jcon.send(MKD + " " + dirName);
 
 		boolean ret = success(POSITIVE); // Filezille server bugfix, was: FTP257_PATH_CREATED);
@@ -2287,7 +2275,6 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * Note that you have to get the output using the
 	 * sort*-methods.
 	 *
-	 * @param outfile The file to save the output to, usually Settings.ls_out
 	 */
 	public void list() throws IOException
 	{
@@ -2354,8 +2341,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 *
 	 * @return True is successful, false otherwise
 	 */
-	public boolean chdir(String p)
-	{
+	public boolean chdir(String p) throws Exception {
 		//Log.out("Change directory to: "+p);
 		//String tmpPath = p;
 
@@ -2564,8 +2550,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 * @param file the name of the file
 	 * @return An int-code: CHDIR_FAILED, PERMISSION_DENIED (no listing allowed), R, W or DENIED
 	 */
-	public int exists(String file)
-	{
+	public int exists(String file) throws Exception {
 		String dir = null;
 		String tmpPWD = getCachedPWD();
 
@@ -2942,8 +2927,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 *
 	 * @param con The FtpConnection calling the event
 	 */
-	public void fireDirectoryUpdate(FtpConnection con)
-	{
+	public void fireDirectoryUpdate(FtpConnection con) throws Exception {
 		if(listeners == null)
 		{
 			return;
@@ -3013,8 +2997,7 @@ public class FtpConnection implements BasicConnection, FtpConstants
 	 *
 	 * @param con The FtpConnection calling the event
 	 */
-	public void fireConnectionInitialized(FtpConnection con)
-	{
+	public void fireConnectionInitialized(FtpConnection con) throws Exception {
 		if(listeners == null)
 		{
 			return;

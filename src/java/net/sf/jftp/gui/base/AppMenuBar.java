@@ -33,13 +33,11 @@ import net.sf.jftp.gui.tasks.HttpDownloader;
 import net.sf.jftp.gui.tasks.LastConnections;
 import net.sf.jftp.gui.tasks.NativeHttpBrowser;
 import net.sf.jftp.gui.tasks.ProxyChooser;
-import net.sf.jftp.net.*;
 import net.sf.jftp.net.wrappers.StartConnection;
 import net.sf.jftp.system.logging.Log;
 import net.sf.jftp.tools.*;
 import net.sf.jftp.util.*;
 
-import java.awt.*;
 import java.awt.event.*;
 
 import java.io.*;
@@ -50,7 +48,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-import javazoom.jl.decoder.*;
 import javazoom.jl.player.*;
 
 
@@ -209,7 +206,7 @@ public class AppMenuBar extends JMenuBar implements ActionListener
         useNewIcons.addActionListener(this);
         hideHidden.addActionListener(this);
 
-        clearItems.addActionListener(JFtp.dList);
+        clearItems.addActionListener(JFtp.getdList());
 
         clear.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
                                                     ActionEvent.ALT_MASK));
@@ -621,7 +618,7 @@ public class AppMenuBar extends JMenuBar implements ActionListener
 	        else if(e.getSource() == spider)
 	        {
 	            jftp.addToDesktop("Http recursive download",
-	                              new HttpSpider(jftp.localDir.getPath() +
+	                              new HttpSpider(jftp.getLocalDir().getPath() +
 	                                             "_httpdownload/"), 440, 250);
 	        }
 	        else if(e.getSource() == hp)

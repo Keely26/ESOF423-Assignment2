@@ -17,13 +17,10 @@ package net.sf.jftp.gui.tasks;
 
 import net.sf.jftp.*;
 import net.sf.jftp.gui.framework.*;
-import net.sf.jftp.net.*;
 import net.sf.jftp.net.wrappers.HttpTransfer;
 
 import java.awt.*;
 import java.awt.event.*;
-
-import java.io.*;
 
 import java.util.*;
 
@@ -59,10 +56,10 @@ public class HttpDownloader extends HPanel implements ActionListener
         if((e.getSource() == ok) || (e.getSource() == text.text))
         {
             Vector listeners = new Vector();
-            listeners.add(JFtp.localDir);
+            listeners.add(JFtp.getLocalDir());
 
             HttpTransfer t = new HttpTransfer(text.getText().trim(),
-                                              JFtp.localDir.getPath(),
+                                              JFtp.getLocalDir().getPath(),
                                               listeners,
                                               JFtp.getConnectionHandler());
 
