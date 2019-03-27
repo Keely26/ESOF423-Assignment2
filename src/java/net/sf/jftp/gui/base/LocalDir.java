@@ -80,65 +80,61 @@ import net.sf.jftp.system.logging.Log;
 import net.sf.jftp.util.ZipFileCreator;
 
 
-public class LocalDir extends DirComponent implements ListSelectionListener,
+public class LocalDir extends guiDir implements ListSelectionListener,
         ActionListener,
         ConnectionListener,
         KeyListener {
-    static final String deleteString = "rm";
-    static final String mkdirString = "mkdir";
-    static final String refreshString = "fresh";
-    static final String cdString = "cd";
-    static final String cmdString = "cmd";
-    static final String downloadString = "<-";
+//    static final String deleteString = "rm";
+//    static final String mkdirString = "mkdir";
+//    static final String refreshString = "fresh";
+//    static final String cdString = "cd";
+//    static final String cmdString = "cmd";
+//    static final String downloadString = "<-";
     static final String uploadString = "->";
     static final String zipString = "zip";
     static final String cpString = "cp";
-    static final String rnString = "rn";
-    static final String cdUpString = "cdUp";
-    // TODO: refactor only one ImageButton?
-    HImageButton deleteButton;
-    HImageButton mkdirButton;
-    HImageButton cmdButton;
-    HImageButton refreshButton;
-    HImageButton cdButton;
+//    static final String rnString = "rn";
+//    static final String cdUpString = "cdUp";
+//    HImageButton deleteButton;
+//    HImageButton mkdirButton;
+//    HImageButton cmdButton;
+//    HImageButton refreshButton;
+//    HImageButton cdButton;
     HImageButton uploadButton;
     HImageButton zipButton;
     HImageButton cpButton;
-    HImageButton rnButton;
-    private DirCanvas label = new DirCanvas(this);
-    private boolean pathChanged = true;
-    private boolean firstGui = true;
-    private int pos = 0;
-    private JPanel p = new JPanel();
-    //TODO: move initializer to constructor
-    private JToolBar buttonPanel = new JToolBar() {
-        public Insets getInsets() {
-            return new Insets(0, 0, 0, 0);
-        }
-    };
+//    HImageButton rnButton;
+//    private DirCanvas label = new DirCanvas(this);
+//    private boolean pathChanged = true;
+//    private boolean firstGui = true;
+//    private int pos = 0;
+//    private JPanel p = new JPanel();
+//    private JToolBar buttonPanel = new JToolBar() {
+//        public Insets getInsets() {
+//            return new Insets(0, 0, 0, 0);
+//        }
+//    };
+//
+//    private JToolBar currDirPanel = new JToolBar() {
+//        public Insets getInsets() {
+//            return new Insets(0, 0, 0, 0);
+//        }
+//    };
 
-    //TODO: move initializer to constructor
-    private JToolBar currDirPanel = new JToolBar() {
-        public Insets getInsets() {
-            return new Insets(0, 0, 0, 0);
-        }
-    };
-
-    //TODO: move initializer to constructor
-    private DefaultListModel jlm;
-    private JScrollPane jsp = new JScrollPane(jl);
+//    private DefaultListModel jlm;
+//    private JScrollPane jsp = new JScrollPane(jl);
     private int tmpindex = -1;
     private Hashtable dummy = new Hashtable();
-    private JPopupMenu popupMenu = new JPopupMenu();
+//    private JPopupMenu popupMenu = new JPopupMenu();
     private JMenuItem runFile = new JMenuItem("Launch file");
     private JMenuItem viewFile = new JMenuItem("View file");
-    private JMenuItem props = new JMenuItem("Properties");
-    private DirEntry currentPopup = null;
-    private String sortMode = null;
-    String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
-    private JComboBox sorter = new JComboBox(sortTypes);
-    HImageButton cdUpButton;
-    private boolean dateEnabled = false;
+//    private JMenuItem props = new JMenuItem("Properties");
+//    private DirEntry currentPopup = null;
+//    private String sortMode = null;
+//    String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
+//    private JComboBox sorter = new JComboBox(sortTypes);
+//    HImageButton cdUpButton;
+//    private boolean dateEnabled = false;
 
     /**
      * LocalDir constructor.
@@ -165,15 +161,11 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
     /**
      * Creates the gui and adds the MouseListener etc.
      */
-    //TODO: refactor super long method
-    //TODO: make private
-    //TODO: refactor duplicated code
-    //TODO: make individual class??
-    //TODO: lots of null checking
     public void gui_init() {
-        setLayout(new BorderLayout());
-        currDirPanel.setFloatable(false);
-        buttonPanel.setFloatable(false);
+        super.guiInit();
+//        setLayout(new BorderLayout());
+//        currDirPanel.setFloatable(false);
+//        buttonPanel.setFloatable(false);
 
         FlowLayout f = new FlowLayout(FlowLayout.RIGHT);
         f.setHgap(1);
@@ -189,23 +181,23 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         popupMenu.add(viewFile);
         popupMenu.add(props);
 
-        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
-                "Delete selected", this);
-        deleteButton.setToolTipText("Delete selected");
+//        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
+//                "Delete selected", this);
+//        deleteButton.setToolTipText("Delete selected");
 
-        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
-                "Create a new directory", this);
-        mkdirButton.setToolTipText("Create directory");
+//        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
+//                "Create a new directory", this);
+//        mkdirButton.setToolTipText("Create directory");
 
-        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
-                "Refresh current directory", this);
-        refreshButton.setToolTipText("Refresh directory");
-        refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
-        refreshButton.setRolloverEnabled(true);
+//        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
+//                "Refresh current directory", this);
+//        refreshButton.setToolTipText("Refresh directory");
+//        refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
+//        refreshButton.setRolloverEnabled(true);
 
-        cdButton = new HImageButton(Settings.cdImage, cdString,
-                "Change directory", this);
-        cdButton.setToolTipText("Change directory");
+//        cdButton = new HImageButton(Settings.cdImage, cdString,
+//                "Change directory", this);
+//        cdButton.setToolTipText("Change directory");
 
         uploadButton = new HImageButton(Settings.uploadImage, uploadString,
                 "Upload selected", this);
@@ -225,18 +217,18 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
                 "Rename selected file or directory", this);
         rnButton.setToolTipText("Rename selected");
 
-        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
-                "Go to Parent Directory", this);
-        cdUpButton.setToolTipText("Go to Parent Directory");
+//        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
+//                "Go to Parent Directory", this);
+//        cdUpButton.setToolTipText("Go to Parent Directory");
 
         label.setText("Filesystem: " + StringUtils.cutPath(path));
-        label.setSize(getSize().width - 10, 24);
-        currDirPanel.add(label);
-        currDirPanel.setSize(getSize().width - 10, 32);
-        label.setSize(getSize().width - 20, 24);
-
-        p.setLayout(new BorderLayout());
-        p.add("North", currDirPanel);
+//        label.setSize(getSize().width - 10, 24);
+//        currDirPanel.add(label);
+//        currDirPanel.setSize(getSize().width - 10, 32);
+//        label.setSize(getSize().width - 20, 24);
+//
+//        p.setLayout(new BorderLayout());
+//        p.add("North", currDirPanel);
 
         buttonPanel.add(sorter);
 
@@ -263,6 +255,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
 
         sorter.addActionListener(this);
 
+        //TODO: create new method accounting for changes to second button
         p.add("South", buttonPanel);
 
         JPanel second = new JPanel();
@@ -282,98 +275,99 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         jl.setCellRenderer(new DirCellRenderer());
         jl.setVisibleRowCount(Settings.visibleFileRows);
 
-        // add this becaus we need to fetch only doubleclicks
-        MouseListener mouseListener = new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                if (JFtp.uiBlocked) {
-                    return;
-                }
-
-                if (e.isPopupTrigger() || SwingUtilities.isRightMouseButton(e)) {
-                    int index = jl.getSelectedIndex() - 1;
-
-                    if (index < -1) {
-                        return;
-                    }
-
-                    String tgt = (String) jl.getSelectedValue().toString();
-
-                    if (index < 0) {
-                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-                            (dirEntry[index] == null)) {
-                        return;
-                    } else {
-                        currentPopup = dirEntry[index];
-                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
-                    }
-                }
-            }
-
-            public void mouseClicked(MouseEvent e) {
-                if (JFtp.uiBlocked) {
-                    return;
-                }
-
-                TableUtils.copyTableSelectionsToJList(jl, table);
-
-                //System.out.println("DirEntryListener::");
-                if (e.getClickCount() == 2) {
-                    //System.out.println("2xList selection: "+jl.getSelectedValue().toString());
-                    int index = jl.getSelectedIndex() - 1;
-
-                    // mousewheel bugfix, ui refresh bugfix
-                    if (index < -1) {
-                        return;
-                    }
-
-                    String tgt = (String) jl.getSelectedValue().toString();
-
-                    //System.out.println("List selection: "+index);
-                    if (index < 0) {
-                        doChdir(path + tgt);
-                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-                            (dirEntry[index] == null)) {
-                        return;
-                    } else if (dirEntry[index].isDirectory()) {
-                        doChdir(path + tgt);
-                    } else {
-                        showContentWindow(path + dirEntry[index].toString(),
-                                dirEntry[index]);
-
-                        //blockedTransfer(index);
-                    }
-                }
-            }
-        };
-
-
-        jsp = new JScrollPane(table);
-        table.getSelectionModel().addListSelectionListener(this);
-        table.addMouseListener(mouseListener);
-
-        AdjustmentListener adjustmentListener = new AdjustmentListener() {
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                jsp.repaint();
-                jsp.revalidate();
-            }
-        };
-
-        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
-        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
+        // add this because we need to fetch only doubleclicks
+        //TODO: remove
+//        MouseListener mouseListener = new MouseAdapter() {
+//            public void mousePressed(MouseEvent e) {
+//                if (JFtp.uiBlocked) {
+//                    return;
+//                }
+//
+//                if (e.isPopupTrigger() || SwingUtilities.isRightMouseButton(e)) {
+//                    int index = jl.getSelectedIndex() - 1;
+//
+//                    if (index < -1) {
+//                        return;
+//                    }
+//
+//                    String tgt = (String) jl.getSelectedValue().toString();
+//
+//                    if (index < 0) {
+//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
+//                            (dirEntry[index] == null)) {
+//                        return;
+//                    } else {
+//                        currentPopup = dirEntry[index];
+//                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
+//                    }
+//                }
+//            }
+//
+//            public void mouseClicked(MouseEvent e) {
+//                if (JFtp.uiBlocked) {
+//                    return;
+//                }
+//
+//                TableUtils.copyTableSelectionsToJList(jl, table);
+//
+//                //System.out.println("DirEntryListener::");
+//                if (e.getClickCount() == 2) {
+//                    //System.out.println("2xList selection: "+jl.getSelectedValue().toString());
+//                    int index = jl.getSelectedIndex() - 1;
+//
+//                    // mousewheel bugfix, ui refresh bugfix
+//                    if (index < -1) {
+//                        return;
+//                    }
+//
+//                    String tgt = (String) jl.getSelectedValue().toString();
+//
+//                    //System.out.println("List selection: "+index);
+//                    if (index < 0) {
+//                        doChdir(path + tgt);
+//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
+//                            (dirEntry[index] == null)) {
+//                        return;
+//                    } else if (dirEntry[index].isDirectory()) {
+//                        doChdir(path + tgt);
+//                    } else {
+//                        showContentWindow(path + dirEntry[index].toString(),
+//                                dirEntry[index]);
+//
+//                        //blockedTransfer(index);
+//                    }
+//                }
+//            }
+//        };
 
 
-        jsp.setSize(getSize().width - 20, getSize().height - 72);
-        add("Center", jsp);
-        jsp.setVisible(true);
-
-        TableUtils.tryToEnableRowSorting(table);
-
-        if (Settings.IS_JAVA_1_6) {
-            //sorter.setVisible(false);
-            buttonPanel.remove(sorter);
-        }
-
-        setVisible(true);
+//        jsp = new JScrollPane(table);
+//        table.getSelectionModel().addListSelectionListener(this);
+//        table.addMouseListener(mouseListener);
+//
+//        AdjustmentListener adjustmentListener = new AdjustmentListener() {
+//            public void adjustmentValueChanged(AdjustmentEvent e) {
+//                jsp.repaint();
+//                jsp.revalidate();
+//            }
+//        };
+//
+//        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
+//        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
+//
+//
+//        jsp.setSize(getSize().width - 20, getSize().height - 72);
+//        add("Center", jsp);
+//        jsp.setVisible(true);
+//
+//        TableUtils.tryToEnableRowSorting(table);
+//
+//        if (Settings.IS_JAVA_1_6) {
+//            //sorter.setVisible(false);
+//            buttonPanel.remove(sorter);
+//        }
+//
+//        setVisible(true);
     }
 
     public void doChdir(String path) {
@@ -383,7 +377,8 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
         JFtp.setAppCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
 
-   // public void setViewPort() { } //TODO: why does this exist?
+    public void setViewPort() {
+    }
 
     /**
      * Part of a gui refresh.
@@ -413,10 +408,6 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
      * List directory and create/update the whole file list.
      * There's no need to call this by hand.
      */
-    //TODO: refactor duplicated code
-    //TODO: long method
-    //TODO: commented out code??
-    //TODO: lots of null checking??
     public void setDirList(boolean fakeInit) {
         jlm = new DefaultListModel();
 
@@ -1072,7 +1063,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
      * Called by FtpConnection
      */
     public void connectionInitialized(BasicConnection con) {
-    } //TODO: why does this exist?
+    }
 
     /**
      * Called by FtpConnection
@@ -1086,7 +1077,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
      * Called by FtpConnection
      */
     public void connectionFailed(BasicConnection con, String reason) {
-    } //TODO: why does this exist?
+    }
 
     private void setDate() {
         if (!(con instanceof FtpConnection) &&
@@ -1217,7 +1208,7 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
             try {
                 url = "file://" + url;
                 String ext = url.toLowerCase();
-                
+
                 /*
                 // -------- images ----------
                 if(ext.endsWith(".jpg") || ext.endsWith(".gif") ||
@@ -1304,8 +1295,8 @@ public class LocalDir extends DirComponent implements ListSelectionListener,
     }
 
     public void keyReleased(KeyEvent e) {
-    } //TODO: why does this exist?
+    }
 
     public void keyTyped(KeyEvent e) {
-    } //TODO: why does this exist?
+    }
 }
