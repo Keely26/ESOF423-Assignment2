@@ -84,57 +84,19 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         ActionListener,
         ConnectionListener,
         KeyListener {
-//    static final String deleteString = "rm";
-//    static final String mkdirString = "mkdir";
-//    static final String refreshString = "fresh";
-//    static final String cdString = "cd";
-//    static final String cmdString = "cmd";
-//    static final String downloadString = "<-";
+
     static final String uploadString = "->";
     static final String zipString = "zip";
     static final String cpString = "cp";
-//    static final String rnString = "rn";
-//    static final String cdUpString = "cdUp";
-//    HImageButton deleteButton;
-//    HImageButton mkdirButton;
-//    HImageButton cmdButton;
-//    HImageButton refreshButton;
-//    HImageButton cdButton;
+
     HImageButton uploadButton;
     HImageButton zipButton;
     HImageButton cpButton;
-//    HImageButton rnButton;
-//    private DirCanvas label = new DirCanvas(this);
-//    private boolean pathChanged = true;
-//    private boolean firstGui = true;
-//    private int pos = 0;
-//    private JPanel p = new JPanel();
-//    private JToolBar buttonPanel = new JToolBar() {
-//        public Insets getInsets() {
-//            return new Insets(0, 0, 0, 0);
-//        }
-//    };
-//
-//    private JToolBar currDirPanel = new JToolBar() {
-//        public Insets getInsets() {
-//            return new Insets(0, 0, 0, 0);
-//        }
-//    };
 
-//    private DefaultListModel jlm;
-//    private JScrollPane jsp = new JScrollPane(jl);
     private int tmpindex = -1;
     private Hashtable dummy = new Hashtable();
-//    private JPopupMenu popupMenu = new JPopupMenu();
     private JMenuItem runFile = new JMenuItem("Launch file");
     private JMenuItem viewFile = new JMenuItem("View file");
-//    private JMenuItem props = new JMenuItem("Properties");
-//    private DirEntry currentPopup = null;
-//    private String sortMode = null;
-//    String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
-//    private JComboBox sorter = new JComboBox(sortTypes);
-//    HImageButton cdUpButton;
-//    private boolean dateEnabled = false;
 
     /**
      * LocalDir constructor.
@@ -163,9 +125,6 @@ public class LocalDir extends guiDir implements ListSelectionListener,
      */
     public void gui_init() {
         super.guiInit();
-//        setLayout(new BorderLayout());
-//        currDirPanel.setFloatable(false);
-//        buttonPanel.setFloatable(false);
 
         FlowLayout f = new FlowLayout(FlowLayout.RIGHT);
         f.setHgap(1);
@@ -181,28 +140,9 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         popupMenu.add(viewFile);
         popupMenu.add(props);
 
-//        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
-//                "Delete selected", this);
-//        deleteButton.setToolTipText("Delete selected");
-
-//        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
-//                "Create a new directory", this);
-//        mkdirButton.setToolTipText("Create directory");
-
-//        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
-//                "Refresh current directory", this);
-//        refreshButton.setToolTipText("Refresh directory");
-//        refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
-//        refreshButton.setRolloverEnabled(true);
-
-//        cdButton = new HImageButton(Settings.cdImage, cdString,
-//                "Change directory", this);
-//        cdButton.setToolTipText("Change directory");
-
         uploadButton = new HImageButton(Settings.uploadImage, uploadString,
                 "Upload selected", this);
         uploadButton.setToolTipText("Upload selected");
-        //uploadButton.setBackground(new Color(192,192,192));
 
         zipButton = new HImageButton(Settings.zipFileImage, zipString,
                 "Add selected to new zip file", this);
@@ -217,18 +157,8 @@ public class LocalDir extends guiDir implements ListSelectionListener,
                 "Rename selected file or directory", this);
         rnButton.setToolTipText("Rename selected");
 
-//        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
-//                "Go to Parent Directory", this);
-//        cdUpButton.setToolTipText("Go to Parent Directory");
 
         label.setText("Filesystem: " + StringUtils.cutPath(path));
-//        label.setSize(getSize().width - 10, 24);
-//        currDirPanel.add(label);
-//        currDirPanel.setSize(getSize().width - 10, 32);
-//        label.setSize(getSize().width - 20, 24);
-//
-//        p.setLayout(new BorderLayout());
-//        p.add("North", currDirPanel);
 
         buttonPanel.add(sorter);
 
@@ -275,106 +205,6 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         jl.setCellRenderer(new DirCellRenderer());
         jl.setVisibleRowCount(Settings.visibleFileRows);
 
-        // add this because we need to fetch only doubleclicks
-        //TODO: remove
-//        MouseListener mouseListener = new MouseAdapter() {
-//            public void mousePressed(MouseEvent e) {
-//                if (JFtp.uiBlocked) {
-//                    return;
-//                }
-//
-//                if (e.isPopupTrigger() || SwingUtilities.isRightMouseButton(e)) {
-//                    int index = jl.getSelectedIndex() - 1;
-//
-//                    if (index < -1) {
-//                        return;
-//                    }
-//
-//                    String tgt = (String) jl.getSelectedValue().toString();
-//
-//                    if (index < 0) {
-//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-//                            (dirEntry[index] == null)) {
-//                        return;
-//                    } else {
-//                        currentPopup = dirEntry[index];
-//                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
-//                    }
-//                }
-//            }
-//
-//            public void mouseClicked(MouseEvent e) {
-//                if (JFtp.uiBlocked) {
-//                    return;
-//                }
-//
-//                TableUtils.copyTableSelectionsToJList(jl, table);
-//
-//                //System.out.println("DirEntryListener::");
-//                if (e.getClickCount() == 2) {
-//                    //System.out.println("2xList selection: "+jl.getSelectedValue().toString());
-//                    int index = jl.getSelectedIndex() - 1;
-//
-//                    // mousewheel bugfix, ui refresh bugfix
-//                    if (index < -1) {
-//                        return;
-//                    }
-//
-//                    String tgt = (String) jl.getSelectedValue().toString();
-//
-//                    //System.out.println("List selection: "+index);
-//                    if (index < 0) {
-//                        doChdir(path + tgt);
-//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-//                            (dirEntry[index] == null)) {
-//                        return;
-//                    } else if (dirEntry[index].isDirectory()) {
-//                        doChdir(path + tgt);
-//                    } else {
-//                        showContentWindow(path + dirEntry[index].toString(),
-//                                dirEntry[index]);
-//
-//                        //blockedTransfer(index);
-//                    }
-//                }
-//            }
-//        };
-
-
-//        jsp = new JScrollPane(table);
-//        table.getSelectionModel().addListSelectionListener(this);
-//        table.addMouseListener(mouseListener);
-//
-//        AdjustmentListener adjustmentListener = new AdjustmentListener() {
-//            public void adjustmentValueChanged(AdjustmentEvent e) {
-//                jsp.repaint();
-//                jsp.revalidate();
-//            }
-//        };
-//
-//        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
-//        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
-//
-//
-//        jsp.setSize(getSize().width - 20, getSize().height - 72);
-//        add("Center", jsp);
-//        jsp.setVisible(true);
-//
-//        TableUtils.tryToEnableRowSorting(table);
-//
-//        if (Settings.IS_JAVA_1_6) {
-//            //sorter.setVisible(false);
-//            buttonPanel.remove(sorter);
-//        }
-//
-//        setVisible(true);
-    }
-
-    public void doChdir(String path) {
-
-        JFtp.setAppCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        con.chdir(path);
-        JFtp.setAppCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
 
     public void setViewPort() {
@@ -1185,87 +1015,7 @@ public class LocalDir extends guiDir implements ListSelectionListener,
     /**
      * Mime type handler for doubleclicks on files
      */
-    public void showContentWindow(String url, DirEntry d) {
-        //------- popup -> run
-        if (Settings.runtimeCommands > 0 && url.startsWith("popup-run@")) {
-            String ext = url.substring(10);
 
-            try {
-                System.out.println("xx: " + ext);
-                if (!Settings.askToRun || (Settings.askToRun && UITool.askToRun(this))) UIUtils.runCommand(ext);
-            } catch (Exception ex) {
-                Log.out("Could not launch file: " + ext);
-            }
-
-            return;
-        }
-
-        //------------
-
-        if (d.toString().endsWith(".zip")) {
-            setZipFilePath(d);
-        } else {
-            try {
-                url = "file://" + url;
-                String ext = url.toLowerCase();
-
-                /*
-                // -------- images ----------
-                if(ext.endsWith(".jpg") || ext.endsWith(".gif") ||
-                       ext.endsWith(".jpeg") || ext.endsWith(".png"))
-                {
-                    ImageViewer d1 = new ImageViewer(url);
-                    JFtp.desktop.add(d1, new Integer(Integer.MAX_VALUE - 11));
-
-                    return;
-                }
-                */
-
-
-                if (Settings.runtimeCommands > 1) {
-                    try {
-                        if (!Settings.askToRun || (Settings.askToRun && UITool.askToRun(this))) {
-                            UIUtils.runCommand(ext);
-                            return;
-                        }
-                    } catch (Exception ex) {
-                        Log.out("Could not launch file: " + ext);
-                    }
-                }
-
-                // -----------------
-                if (d.getRawSize() > 200000) {
-                    Log.debug("File is too big - 200kb is the maximum, sorry.");
-
-                    return;
-                }
-
-                HPanel f = new HPanel();
-
-                JEditorPane pane = new JEditorPane(url);
-                pane.setEditable(false);
-
-                if (!pane.getEditorKit().getContentType().equals("text/html") &&
-                        !pane.getEditorKit().getContentType().equals("text/rtf")) {
-                    if (!pane.getEditorKit().getContentType().equals("text/plain")) {
-                        Log.debug("Nothing to do with this filetype - use the buttons if you want to transfer files.");
-
-                        return;
-                    }
-
-                    pane.setEditable(false);
-                }
-
-                JScrollPane jsp = new JScrollPane(pane);
-
-                f.setLayout(new BorderLayout());
-                f.add("Center", jsp);
-                JFtp.statusP.jftp.addToDesktop(url, f, 600, 400);
-            } catch (Exception ex) {
-                Log.debug("File error: " + ex);
-            }
-        }
-    }
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {

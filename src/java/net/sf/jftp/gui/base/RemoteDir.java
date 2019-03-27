@@ -79,49 +79,16 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         ActionListener,
         ConnectionListener,
         KeyListener {
-    //HImageButton openButton;
-//    static final String deleteString = "rm";
-//    static final String mkdirString = "mkdir";
-//    static final String refreshString = "fresh";
-//    static final String cdString = "cd";
     static final String cmdString = "cmd";
     static final String downloadString = "<-";
-//    static final String uploadString = "->";
+
     static final String queueString = "que";
-//    static final String cdUpString = "cdUp";
-//    static final String rnString = "rn";
-//    HImageButton deleteButton;
-//    HImageButton mkdirButton;
+
     HImageButton cmdButton;
-//    HImageButton refreshButton;
-//    HImageButton cdButton;
-//    HImageButton uploadButton;
+
     HImageButton downloadButton;
     HImageButton queueButton;
-//    HImageButton cdUpButton;
-//    HImageButton rnButton;
 
-    //static final String openString = "open";
-//    private DirCanvas label = new DirCanvas(this);
-//    private boolean pathChanged = true;
-//    private boolean firstGui = true;
-//    private int pos = 0;
-//    private JPanel p = new JPanel();
-//    private JToolBar buttonPanel = new JToolBar() {
-//        public Insets getInsets() {
-//            return new Insets(0, 0, 0, 0);
-//        }
-//    };
-//
-//    //private JPanel buttonPanel = new JPanel();
-//    private JToolBar currDirPanel = new JToolBar() {
-//        public Insets getInsets() {
-//            return new Insets(0, 0, 0, 0);
-//        }
-//    };
-
-//    private DefaultListModel jlm;
-//    private JScrollPane jsp = new JScrollPane(jl);
     private int tmpindex = -1;
     private HImageButton list = new HImageButton(Settings.listImage, "list",
             "Show remote listing...", this);
@@ -129,13 +96,6 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
             "type",
             "Toggle transfer type...",
             this);
-//    private JPopupMenu popupMenu = new JPopupMenu();
-//    private JMenuItem props = new JMenuItem("Properties");
-//    private DirEntry currentPopup = null;
-//    private String sortMode = null;
-//    String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
-//    private JComboBox sorter = new JComboBox(sortTypes);
-//    private boolean dateEnabled = false;
 
     /**
      * RemoteDir constructor.
@@ -171,9 +131,6 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
     //TODO: rename function
     public void gui_init() {
         super.guiInit();
-//        setLayout(new BorderLayout());
-//        currDirPanel.setFloatable(false);
-//        buttonPanel.setFloatable(false);
 
         FlowLayout f = new FlowLayout(FlowLayout.LEFT);
         f.setHgap(1);
@@ -192,24 +149,6 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         list.setToolTipText("Show remote listing...");
         transferType.setToolTipText("Toggle transfer type...");
 
-//        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
-//                "Delete  selected", this);
-//        deleteButton.setToolTipText("Delete selected");
-
-//        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
-//                "Create a new directory", this);
-//        mkdirButton.setToolTipText("Create directory");
-
-//        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
-//                "Refresh current directory", this);
-//        refreshButton.setToolTipText("Refresh directory");
-//        refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
-//        refreshButton.setRolloverEnabled(true);
-
-//        cdButton = new HImageButton(Settings.cdImage, cdString,
-//                "Change directory", this);
-//        cdButton.setToolTipText("Change directory");
-
         cmdButton = new HImageButton(Settings.cmdImage, cmdString,
                 "Execute remote command", this);
         cmdButton.setToolTipText("Execute remote command");
@@ -223,29 +162,13 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
                 "Queue selected", this);
         queueButton.setToolTipText("Queue selected");
 
-//        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
-//                "Go to Parent Directory", this);
-//        cdUpButton.setToolTipText("Go to Parent Directory");
-
-        //openButton = new HImageButton(Settings.openImage,openString,"Connect to server",this);
-        //openButton.setToolTipText("Connect");
         setLabel();
-//        label.setSize(getSize().width - 10, 24);
-//        currDirPanel.add(label);
-//        currDirPanel.setSize(getSize().width - 10, 32);
-//        label.setSize(getSize().width - 20, 24);
-//
-//        p.setLayout(new BorderLayout());
-//        p.add("North", currDirPanel);
-
         //TODO: create new button panel manager class
         buttonPanel.add(new JLabel("           "));
         buttonPanel.add(queueButton);
 
         buttonPanel.add(new JLabel("    "));
 
-        //buttonPanel.add(openButton);
-        //buttonPanel.add(new JLabel("   "));
         buttonPanel.add(refreshButton);
         buttonPanel.add(new JLabel("  "));
         buttonPanel.add(rnButton);
@@ -259,7 +182,6 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         buttonPanel.add(list);
         buttonPanel.add(transferType);
 
-        //buttonPanel.add(new JLabel(" "));
         buttonPanel.add(sorter);
 
         buttonPanel.setVisible(true);
@@ -281,7 +203,6 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
 
         sorter.addActionListener(this);
 
-        //setDirList(true);
         jlm = new DefaultListModel();
         jl = new JList(jlm);
         jl.setCellRenderer(new DirCellRenderer());
@@ -289,112 +210,7 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         jl.setDragEnabled(true);
         jl.setDropTarget(JFtp.statusP.jftp.dropTarget);
 
-        // add this becaus we need to fetch only doubleclicks
-        //TODO: remove
-//        MouseListener mouseListener = new MouseAdapter() {
-//            public void mousePressed(MouseEvent e) {
-//                if (JFtp.uiBlocked) {
-//                    return;
-//                }
-//
-//                if (e.isPopupTrigger() || SwingUtilities.isRightMouseButton(e)) {
-//                    int index = jl.getSelectedIndex() - 1;
-//
-//                    if (index < -1) {
-//                        return;
-//                    }
-//
-//                    String tgt = (String) jl.getSelectedValue().toString();
-//
-//                    if (index < 0) {
-//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-//                            (dirEntry[index] == null)) {
-//                        return;
-//                    } else {
-//                        currentPopup = dirEntry[index];
-//                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
-//                    }
-//                }
-//            }
-//
-//            public void mouseClicked(MouseEvent e) {
-//                if (JFtp.uiBlocked) {
-//                    return;
-//                }
-//
-//                TableUtils.copyTableSelectionsToJList(jl, table);
-//
-//                //System.out.println("DirEntryListener::");
-//                if (e.getClickCount() == 2) {
-//                    //System.out.println("2xList selection: "+jl.getSelectedValue().toString());
-//                    int index = jl.getSelectedIndex() - 1;
-//
-//                    // mousewheel bugfix
-//                    if (index < -1) {
-//                        return;
-//                    }
-//
-//                    String tgt = (String) jl.getSelectedValue().toString();
-//
-//                    if (index < 0) {
-//                        doChdir(path + tgt);
-//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-//                            (dirEntry[index] == null)) {
-//                        return;
-//                    } else if (dirEntry[index].isDirectory()) {
-//                        doChdir(path + tgt);
-//                    } else if (dirEntry[index].isLink()) {
-//                        if (!con.chdir(path + tgt)) {
-//                            showContentWindow(path +
-//                                            dirEntry[index].toString(),
-//                                    dirEntry[index]);
-//
-//                            //blockedTransfer(index);
-//                        }
-//                    } else {
-//                        showContentWindow(path + dirEntry[index].toString(),
-//                                dirEntry[index]);
-//
-//                        //blockedTransfer(index);
-//                    }
-//                }
-//            }
-//        };
-
-//        jsp = new JScrollPane(table);
-//        table.getSelectionModel().addListSelectionListener(this);
-//        table.addMouseListener(mouseListener);
-//
-//        AdjustmentListener adjustmentListener = new AdjustmentListener() {
-//            public void adjustmentValueChanged(AdjustmentEvent e) {
-//                jsp.repaint();
-//                jsp.revalidate();
-//            }
-//        };
-//
-//        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
-//        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
-//
-//        jsp.setSize(getSize().width - 20, getSize().height - 72);
-//        add("Center", jsp);
-//        jsp.setVisible(true);
-//
-//        TableUtils.tryToEnableRowSorting(table);
-//
-//        if (Settings.IS_JAVA_1_6) {
-//            //sorter.setVisible(false);
-//            buttonPanel.remove(sorter);
-//        }
-//
-//        setVisible(true);
     }
-
-//    public void doChdir(String path) {
-//
-//        JFtp.setAppCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//        con.chdir(path);
-//        JFtp.setAppCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-//    }
 
     public void setViewPort() {
     }
@@ -1215,86 +1031,6 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         //JFtp.statusP.jftp.ensureLogging();
         UpdateDaemon.updateLog();
     }
-
-    /**
-     * Mime type handler for doubleclicks on files
-     */
-//    public void showContentWindow(String url, DirEntry d) {
-//        try {
-//            if (d.getRawSize() > 200000) {
-//                Log.debug("File is too big - 200kb is the maximum, sorry.");
-//
-//                return;
-//            }
-//
-//            String path = JFtp.localDir.getPath();
-//
-//            if (!path.endsWith("/")) {
-//                path = path + "/";
-//            }
-//
-//            File file = new File(path + StringUtils.getFile(url));
-//
-//            if (!(con instanceof FilesystemConnection)) {
-//                if (!file.exists()) {
-//                    con.download(url);
-//                } else {
-//                    Log.debug("\nRemote file must be downloaded to be viewed and\n" +
-//                            " you already have a local copy present, pleasen rename it\n" +
-//                            " and try again.");
-//
-//                    return;
-//                }
-//
-//                file = new File(JFtp.localDir.getPath() +
-//                        StringUtils.getFile(url));
-//
-//                if (!file.exists()) {
-//                    Log.debug("File not found: " + JFtp.localDir.getPath() +
-//                            StringUtils.getFile(url));
-//                }
-//            } else {
-//                file = new File(getPath() + StringUtils.getFile(url));
-//            }
-//
-//            HFrame f = new HFrame();
-//            f.setTitle(url);
-//
-//            String fileUrl = ("file://" + (file.getAbsolutePath().startsWith("/") ? file.getAbsolutePath() : "/" + file.getAbsolutePath()));
-//            System.out.println(fileUrl);
-//
-//            JEditorPane pane = new JEditorPane(fileUrl);
-//
-//
-//            if (!pane.getEditorKit().getContentType().equals("text/html") &&
-//                    !pane.getEditorKit().getContentType().equals("text/rtf")) {
-//                if (!pane.getEditorKit().getContentType().equals("text/plain")) {
-//                    Log.debug("Nothing to do with this filetype - use the buttons if you want to transfer files.");
-//
-//                    return;
-//                }
-//
-//                pane.setEditable(false);
-//            }
-//
-//            JScrollPane jsp = new JScrollPane(pane);
-//
-//            f.getContentPane().setLayout(new BorderLayout());
-//            f.getContentPane().add("Center", jsp);
-//            f.setModal(false);
-//            f.setLocation(100, 100);
-//            f.setSize(600, 400);
-//
-//            //f.pack();
-//            f.show();
-//
-//            dList.fresh();
-//            JFtp.localDir.getCon().removeFileOrDir(StringUtils.getFile(url));
-//            JFtp.localDir.fresh();
-//        } catch (Exception ex) {
-//            Log.debug("File error: " + ex);
-//        }
-//    }
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {

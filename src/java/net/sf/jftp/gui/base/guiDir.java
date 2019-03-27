@@ -19,12 +19,12 @@ import java.awt.event.*;
 import java.io.File;
 
 public class guiDir extends DirComponent {
-    static final String deleteString = "rm";
-    static final String mkdirString = "mkdir";
-    static final String refreshString = "fresh";
-    static final String cdString = "cd";
+    private static final String deleteString = "rm";
+    private static final String mkdirString = "mkdir";
+    private static final String refreshString = "fresh";
+    private static final String cdString = "cd";
     static final String rnString = "rn";
-    static final String cdUpString = "cdUp";
+    private static final String cdUpString = "cdUp";
 
     HImageButton deleteButton;
     HImageButton mkdirButton;
@@ -38,64 +38,44 @@ public class guiDir extends DirComponent {
     boolean firstGui = true;
     JPanel p = new JPanel();
 
-    JToolBar buttonPanel = new JToolBar() {
-        public Insets getInsets() {
-            return new Insets(0, 0, 0, 0);
-        }
-    };
+    JToolBar buttonPanel;
 
-    JToolBar currDirPanel = new JToolBar() {
-        public Insets getInsets() {
-            return new Insets(0, 0, 0, 0);
-        }
-    };
+    private JToolBar currDirPanel;
 
     DefaultListModel jlm;
-    JScrollPane jsp = new JScrollPane(jl);
-//    int tmpindex = -1;
-    JPopupMenu popupMenu = new JPopupMenu();
-    JMenuItem props = new JMenuItem("Properties");
-    DirEntry currentPopup = null;
-    String sortMode = null;
-    String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
-    JComboBox sorter = new JComboBox(sortTypes);
-    boolean dateEnabled = false;
+    private JScrollPane jsp;
+    JPopupMenu popupMenu;
+    JMenuItem props;
+    DirEntry currentPopup;
+    String sortMode;
+    JComboBox<String> sorter;
+    boolean dateEnabled;
+
+    guiDir() {
+        buttonPanel = new JToolBar() {
+            public Insets getInsets() {
+                return new Insets(0, 0, 0, 0);
+            }
+        };
+        currDirPanel = new JToolBar() {
+            public Insets getInsets() {
+                return new Insets(0, 0, 0, 0);
+            }
+        };
+        popupMenu = new JPopupMenu();
+        props = new JMenuItem("Properties");
+        sortMode = null;
+        String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
+        sorter = new JComboBox<>(sortTypes);
+        dateEnabled = false;
+        jsp = new JScrollPane(jl);
+        currentPopup = null;
+    }
 
     public void guiInit() {
         setLayout(new BorderLayout());
-        currDirPanel.setFloatable(false);
-        buttonPanel.setFloatable(false);
-
-        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
-                "Delete selected", (ActionListener) this);
-        deleteButton.setToolTipText("Delete selected");
-
-        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
-                "Create a new directory", (ActionListener) this);
-        mkdirButton.setToolTipText("Create directory");
-
-        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
-                "Refresh current directory", (ActionListener) this);
-        refreshButton.setToolTipText("Refresh directory");
-        refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
-        refreshButton.setRolloverEnabled(true);
-
-        cdButton = new HImageButton(Settings.cdImage, cdString,
-                "Change directory", (ActionListener) this);
-        cdButton.setToolTipText("Change directory");
-
-        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
-                "Go to Parent Directory", (ActionListener) this);
-        cdUpButton.setToolTipText("Go to Parent Directory");
-
-        label.setSize(getSize().width - 10, 24);
-        currDirPanel.add(label);
-        currDirPanel.setSize(getSize().width - 10, 32);
-        label.setSize(getSize().width - 20, 24);
-
-        p.setLayout(new BorderLayout());
-        p.add("North", currDirPanel);
-
+        buttonManager();
+        JPanelManager();
         MouseListener mouseListener = new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 if (JFtp.uiBlocked) {
@@ -158,10 +138,6 @@ public class guiDir extends DirComponent {
                 }
             }
         };
-        jsp = new JScrollPane(table);
-        table.getSelectionModel().addListSelectionListener(this);
-        table.addMouseListener(mouseListener);
-
         AdjustmentListener adjustmentListener = new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 jsp.repaint();
@@ -169,25 +145,18 @@ public class guiDir extends DirComponent {
             }
         };
 
-        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
-        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
-
-
-        jsp.setSize(getSize().width - 20, getSize().height - 72);
-        add("Center", jsp);
-        jsp.setVisible(true);
-
+        jspManager(adjustmentListener);
+        table.getSelectionModel().addListSelectionListener(this);
+        table.addMouseListener(mouseListener);
         TableUtils.tryToEnableRowSorting(table);
 
-        if (Settings.IS_JAVA_1_6) {
-            //sorter.setVisible(false);
-            buttonPanel.remove(sorter);
-        }
+        if (Settings.IS_JAVA_1_6) buttonPanel.remove(sorter);
 
         setVisible(true);
 
 
     }
+
     public void doChdir(String path) {
 
         JFtp.setAppCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -272,4 +241,55 @@ public class guiDir extends DirComponent {
         }
     }
 
+    public void buttonManager() {
+        buttonPanel.setFloatable(false);
+        deleteButton = new HImageButton(Settings.deleteImage, deleteString,
+                "Delete selected", (ActionListener) this);
+        deleteButton.setToolTipText("Delete selected");
+
+        mkdirButton = new HImageButton(Settings.mkdirImage, mkdirString,
+                "Create a new directory", (ActionListener) this);
+        mkdirButton.setToolTipText("Create directory");
+
+        refreshButton = new HImageButton(Settings.refreshImage, refreshString,
+                "Refresh current directory", (ActionListener) this);
+        refreshButton.setToolTipText("Refresh directory");
+        refreshButton.setRolloverIcon(new ImageIcon(HImage.getImage(this, Settings.refreshImage2)));
+        refreshButton.setRolloverEnabled(true);
+
+        cdButton = new HImageButton(Settings.cdImage, cdString,
+                "Change directory", (ActionListener) this);
+        cdButton.setToolTipText("Change directory");
+
+        cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
+                "Go to Parent Directory", (ActionListener) this);
+        cdUpButton.setToolTipText("Go to Parent Directory");
+
+    }
+
+    public void JPanelManager() {
+        currDirPanel.setFloatable(false);
+        label.setSize(getSize().width - 10, 24);
+        currDirPanel.add(label);
+        currDirPanel.setSize(getSize().width - 10, 32);
+        label.setSize(getSize().width - 20, 24);
+
+        p.setLayout(new BorderLayout());
+        p.add("North", currDirPanel);
+
+    }
+
+    public void jspManager(AdjustmentListener adjustmentListener){
+        jsp = new JScrollPane(table);
+        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
+        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
+
+        jsp.setSize(getSize().width - 20, getSize().height - 72);
+        add("Center", jsp);
+        jsp.setVisible(true);
+
+    }
+
 }
+
+
