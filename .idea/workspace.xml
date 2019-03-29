@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bde84db-eabd-42a4-818c-bd776f5ca31e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -12,36 +14,29 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.43835616">
+    <splitter split-orientation="vertical" split-proportion="0.47434294">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.5233918">
+        <splitter split-orientation="horizontal" split-proportion="0.5">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file pinned="false" current-in-tab="false">
+              <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="450">
-                      <caret line="101" column="23" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
+                    <state relative-caret-position="-36">
+                      <caret line="227" column="62" lean-forward="true" selection-start-line="227" selection-start-column="62" selection-end-line="227" selection-end-column="62" />
                       <folding>
-                        <element signature="method#RemoteDir#0;class#RemoteDir#0" />
-                        <element signature="method#RemoteDir#1;class#RemoteDir#0" />
-                        <element signature="method#setLabel#0;class#RemoteDir#0" />
-                        <element signature="method#gui#0;class#RemoteDir#0" />
-                        <element signature="method#setDirList#0;class#RemoteDir#0" />
-                        <element signature="method#actionPerformed#0;class#RemoteDir#0" />
-                        <element signature="method#blockedTransfer#0;class#RemoteDir#0" />
-                        <element signature="method#lock#0;class#RemoteDir#0" />
-                        <element signature="method#unlock#0;class#RemoteDir#0" />
+                        <element signature="e#5037#5321#0" />
+                        <element signature="e#5327#5593#0" />
                       </folding>
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java">
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-174">
-                      <caret line="98" column="60" lean-forward="true" selection-start-line="98" selection-start-column="60" selection-end-line="98" selection-end-column="60" />
+                    <state relative-caret-position="60">
+                      <caret line="85" selection-start-line="85" selection-end-line="85" />
                     </state>
                   </provider>
                 </entry>
@@ -49,22 +44,17 @@
             </leaf>
           </split-first>
           <split-second>
-            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <leaf>
               <file pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
+                <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="915">
-                      <caret line="187" column="34" selection-start-line="187" selection-start-column="34" selection-end-line="187" selection-end-column="34" />
+                    <state relative-caret-position="10">
+                      <caret line="223" column="5" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
                       <folding>
-                        <element signature="method#RemoteDir#0;class#RemoteDir#0" />
-                        <element signature="method#RemoteDir#1;class#RemoteDir#0" />
-                        <element signature="method#setLabel#0;class#RemoteDir#0" />
-                        <element signature="method#gui#0;class#RemoteDir#0" />
-                        <element signature="method#setDirList#0;class#RemoteDir#0" />
-                        <element signature="method#actionPerformed#0;class#RemoteDir#0" />
-                        <element signature="method#blockedTransfer#0;class#RemoteDir#0" />
-                        <element signature="method#lock#0;class#RemoteDir#0" />
-                        <element signature="method#unlock#0;class#RemoteDir#0" />
+                        <element signature="e#4996#5177#0" />
+                        <element signature="e#5183#5449#0" />
+                        <element signature="e#36054#36055#0" expanded="true" />
+                        <element signature="e#36099#36100#0" expanded="true" />
                       </folding>
                     </state>
                   </provider>
@@ -75,53 +65,15 @@
         </splitter>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+        <leaf>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/framework/HImageButton.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/awt/event/MouseListener.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/dir/DirCanvas.java">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/javax/swing/JPanel.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/awt/event/MouseAdapter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="452">
-                  <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+                <state relative-caret-position="1062">
+                  <caret line="158" column="89" selection-start-line="158" selection-start-column="89" selection-end-line="158" selection-end-column="89" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -155,8 +107,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/framework/HImageButton.java" />
-        <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" />
         <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" />
+        <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" />
         <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" />
       </list>
     </option>
@@ -261,7 +213,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553876914828" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553881665286" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -314,12 +266,12 @@
       <workItem from="1553532470178" duration="1170000" />
       <workItem from="1553534411462" duration="719000" />
       <workItem from="1553636103825" duration="7862000" />
-      <workItem from="1553878599026" duration="731000" />
+      <workItem from="1553878599026" duration="2847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32105000" />
+    <option name="totallyTimeSpent" value="34221000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -334,8 +286,8 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7808219" visible="true" weight="0.022889843" />
-      <window_info id="Structure" order="1" sideWeight="0.21917808" side_tool="true" visible="true" weight="0.022889843" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78097624" visible="true" weight="0.031473532" />
+      <window_info id="Structure" order="1" sideWeight="0.21902378" side_tool="true" visible="true" weight="0.031473532" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -344,13 +296,13 @@
       <window_info id="JRebel" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40843374" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.0373494" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Duplicate detector" order="7" sideWeight="0.49928468" weight="0.16435644" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.20843373" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.05421687" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.4253012" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.036144577" />
@@ -548,38 +500,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../j-ftp 2/src/java/net/sf/jftp/gui/base/RemoteDir.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#46967#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../j-ftp 2/src/java/net/sf/jftp/gui/base/LocalDir.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
             <element signature="e#0#46137#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="101" column="23" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
-          <folding>
-            <element signature="method#RemoteDir#0;class#RemoteDir#0" />
-            <element signature="method#RemoteDir#1;class#RemoteDir#0" />
-            <element signature="method#setLabel#0;class#RemoteDir#0" />
-            <element signature="method#gui#0;class#RemoteDir#0" />
-            <element signature="method#setDirList#0;class#RemoteDir#0" />
-            <element signature="method#actionPerformed#0;class#RemoteDir#0" />
-            <element signature="method#blockedTransfer#0;class#RemoteDir#0" />
-            <element signature="method#lock#0;class#RemoteDir#0" />
-            <element signature="method#unlock#0;class#RemoteDir#0" />
           </folding>
         </state>
       </provider>
@@ -615,17 +540,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../j-ftp 2/src/java/net/sf/jftp/gui/base/RemoteDir.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#46967#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-174">
-          <caret line="98" column="60" lean-forward="true" selection-start-line="98" selection-start-column="60" selection-end-line="98" selection-end-column="60" />
+        <state relative-caret-position="10">
+          <caret line="223" column="5" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
+          <folding>
+            <element signature="e#4996#5177#0" />
+            <element signature="e#5183#5449#0" />
+            <element signature="e#36054#36055#0" expanded="true" />
+            <element signature="e#36099#36100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="227" column="62" lean-forward="true" selection-start-line="227" selection-start-column="62" selection-end-line="227" selection-end-column="62" />
+          <folding>
+            <element signature="e#5037#5321#0" />
+            <element signature="e#5327#5593#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        <state relative-caret-position="1062">
+          <caret line="158" column="89" selection-start-line="158" selection-start-column="89" selection-end-line="158" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
