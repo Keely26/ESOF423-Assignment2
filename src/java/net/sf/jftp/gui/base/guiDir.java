@@ -1,15 +1,17 @@
 package net.sf.jftp.gui.base;
 
+import net.sf.jftp.JFtp;
 import net.sf.jftp.config.Settings;
 import net.sf.jftp.gui.base.dir.DirCanvas;
 import net.sf.jftp.gui.base.dir.DirComponent;
 import net.sf.jftp.gui.base.dir.DirEntry;
+import net.sf.jftp.gui.base.dir.TableUtils;
 import net.sf.jftp.gui.framework.HImage;
 import net.sf.jftp.gui.framework.HImageButton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Hashtable;
 
 public class guiDir extends DirComponent {
@@ -90,8 +92,11 @@ public class guiDir extends DirComponent {
     public void guiInit(FlowLayout f) {
         currDirPanel.setFloatable(false);
         buttonPanel.setFloatable(false);
+        MouseListener mouseListener = mouseListenerInit();
+        AdjustmentListener adjustmentListener = adjustmentListenerInit();
         flowLayoutInit(f);
         buttonPanelInit(f);
+        jScrollPanelInit(mouseListener, adjustmentListener);
     }
 
     public void buttonPanelInit(FlowLayout f) {
@@ -102,6 +107,11 @@ public class guiDir extends DirComponent {
         currDirPanel.add(label);
         currDirPanel.setSize(getSize().width - 10, 32);
         label.setSize(getSize().width - 20, 24);
+
+        p.setLayout(new BorderLayout());
+        p.add("North", currDirPanel);
+
+//        addButtons();
 
     }
 
@@ -166,18 +176,129 @@ public class guiDir extends DirComponent {
     }
 
     public void addButtons() {
+        buttonPanel.add(rnButton);
+        buttonPanel.add(mkdirButton);
+
+        buttonPanel.add(cdButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(cdUpButton);
+        buttonPanel.add(new JLabel("  "));
 
     }
 
     private void JPanelManager() {
     }
 
-    private void jspManager() {
+    private void jScrollPanelInit(MouseListener mouseListener, AdjustmentListener adjustmentListener) {
+        jsp = new JScrollPane(table);
+        table.getSelectionModel().addListSelectionListener(this);
+        table.addMouseListener(mouseListener);
+
+        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
+        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
+
+
+        jsp.setSize(getSize().width - 20, getSize().height - 72);
+        add("Center", jsp);
+        jsp.setVisible(true);
+
+        TableUtils.tryToEnableRowSorting(table);
+
+        if (Settings.IS_JAVA_1_6) {
+            //sorter.setVisible(false);
+            buttonPanel.remove(sorter);
+        }
+
+        setVisible(true);
     }
 
     void flowLayoutInit(FlowLayout f) {
         f.setHgap(1);
         f.setVgap(2);
     }
+
+    private MouseListener mouseListenerInit() {
+        MouseListener mouseListener = new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (JFtp.uiBlocked) {
+                    return;
+                }
+
+                if (e.isPopupTrigger() || SwingUtilities.isRightMouseButton(e)) {
+                    int index = jl.getSelectedIndex() - 1;
+
+                    if (index < -1) {
+                        return;
+                    }
+
+                    String tgt = (String) jl.getSelectedValue().toString();
+
+                    if (index < 0) {
+                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
+                            (dirEntry[index] == null)) {
+                        return;
+                    } else {
+                        currentPopup = dirEntry[index];
+                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+            }
+
+            public void mouseClicked(MouseEvent e) {
+                if (JFtp.uiBlocked) {
+                    return;
+                }
+
+                TableUtils.copyTableSelectionsToJList(jl, table);
+
+                //System.out.println("DirEntryListener::");
+                if (e.getClickCount() == 2) {
+                    //System.out.println("2xList selection: "+jl.getSelectedValue().toString());
+                    int index = jl.getSelectedIndex() - 1;
+
+                    // mousewheel bugfix, ui refresh bugfix
+                    if (index < -1) {
+                        return;
+                    }
+
+                    String tgt = (String) jl.getSelectedValue().toString();
+
+                    //System.out.println("List selection: "+index);
+                    if (index < 0) {
+                        doChdir(path + tgt);
+                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
+                            (dirEntry[index] == null)) {
+                        return;
+                    } else if (dirEntry[index].isDirectory()) {
+                        doChdir(path + tgt);
+                    } else {
+                        showContentWindow(path + dirEntry[index].toString(),
+                                dirEntry[index]);
+
+                        //blockedTransfer(index);
+                    }
+                }
+            }
+        };
+        return mouseListener;
+    }
+
+    private AdjustmentListener adjustmentListenerInit(){
+        AdjustmentListener adjustmentListener = new AdjustmentListener() {
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                jsp.repaint();
+                jsp.revalidate();
+            }
+        };
+        return adjustmentListener;
+    }
+
+
+    public void doChdir(String path) { }
+
+    public void showContentWindow(String url, DirEntry d){}
+
+
+
 
 }
