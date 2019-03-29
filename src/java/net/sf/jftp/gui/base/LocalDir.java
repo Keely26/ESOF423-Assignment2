@@ -85,13 +85,13 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         ConnectionListener,
         KeyListener {
 
-    static final String uploadString = "->";
-    static final String zipString = "zip";
-    static final String cpString = "cp";
-
-    HImageButton uploadButton;
-    HImageButton zipButton;
-    HImageButton cpButton;
+//    static final String uploadString = "->";
+//    static final String zipString = "zip";
+//    static final String cpString = "cp";
+//
+//    HImageButton uploadButton;
+//    HImageButton zipButton;
+//    HImageButton cpButton;
 
     private int tmpindex = -1;
     private Hashtable dummy = new Hashtable();
@@ -127,19 +127,21 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         super.guiInit();
 
         FlowLayout f = new FlowLayout(FlowLayout.RIGHT);
-        f.setHgap(1);
-        f.setVgap(2);
+        super.flowLayoutInit(f, runFile, viewFile);
+//        f.setHgap(1); // Sets the horizontal gap between components and between the components and the borders of the Container
+//        f.setVgap(2); // Sets the vertical gap between components and between the components and the borders of the Container
+//
+//        buttonPanel.setLayout(f); // defines the container for the button panel
+//        buttonPanel.setMargin(new Insets(0, 0, 0, 0)); // sets the margin for the button panel view
+//
+//        runFile.addActionListener(this); //adds an action listener to the runfile menu item
+//        viewFile.addActionListener(this); //adds an action listener to the viewfile menu item
+//        props.addActionListener(this); // adds the properties to the J-popup-menu
+//        popupMenu.add(runFile); // adds the runfile to the J-popup-menu
+//        popupMenu.add(viewFile); // adds the viewfile to the J-popup-menu
+//        popupMenu.add(props); // adds the properties to the J-popup-menu
 
-        buttonPanel.setLayout(f);
-        buttonPanel.setMargin(new Insets(0, 0, 0, 0));
-
-        runFile.addActionListener(this);
-        viewFile.addActionListener(this);
-        props.addActionListener(this);
-        popupMenu.add(runFile);
-        popupMenu.add(viewFile);
-        popupMenu.add(props);
-
+        // button initialization for remote directory specific buttons
         uploadButton = new HImageButton(Settings.uploadImage, uploadString,
                 "Upload selected", this);
         uploadButton.setToolTipText("Upload selected");
@@ -156,8 +158,9 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         rnButton = new HImageButton(Settings.textFileImage, rnString,
                 "Rename selected file or directory", this);
         rnButton.setToolTipText("Rename selected");
-
-
+        // --------------------------------------------------------------
+        super.createButtonPanel();
+        //TODO: create new button panel manager class
         label.setText("Filesystem: " + StringUtils.cutPath(path));
 
         buttonPanel.add(sorter);

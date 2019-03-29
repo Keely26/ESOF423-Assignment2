@@ -25,6 +25,20 @@ public class guiDir extends DirComponent {
     private static final String cdString = "cd";
     static final String rnString = "rn";
     private static final String cdUpString = "cdUp";
+    static final String uploadString = "->";
+    static final String zipString = "zip";
+    static final String cpString = "cp";
+    private static final String cmdString = "cmd";
+    private static final String downloadString = "<-";
+    private static final String queueString = "que";
+
+    HImageButton uploadButton;
+    HImageButton zipButton;
+    HImageButton cpButton;
+
+    private HImageButton cmdButton;
+    private HImageButton downloadButton;
+    private HImageButton queueButton;
 
     HImageButton deleteButton;
     HImageButton mkdirButton;
@@ -32,50 +46,44 @@ public class guiDir extends DirComponent {
     HImageButton cdButton;
     HImageButton rnButton;
     HImageButton cdUpButton;
+//
+//    private HImageButton list = new HImageButton(Settings.listImage, "list", "Show remote listing...", this);
+//    private HImageButton transferType = new HImageButton(Settings.typeImage, "type", "Toggle transfer type...", this);
 
     DirCanvas label = new DirCanvas(this);
     boolean pathChanged = true;
     boolean firstGui = true;
     JPanel p = new JPanel();
 
-    JToolBar buttonPanel;
+    JToolBar buttonPanel = new JToolBar() {
+        public Insets getInsets() {
+            return new Insets(0, 0, 0, 0);
+        }
+    };
 
-    private JToolBar currDirPanel;
+    private JToolBar currDirPanel = new JToolBar() {
+        public Insets getInsets() {
+            return new Insets(0, 0, 0, 0);
+        }
+    };
 
     DefaultListModel jlm;
-    private JScrollPane jsp;
+    private JScrollPane jsp = new JScrollPane(jl);
     JPopupMenu popupMenu;
-    JMenuItem props;
-    DirEntry currentPopup;
-    String sortMode;
+    JMenuItem props = new JMenuItem("Properties");
+    DirEntry currentPopup = null;
+    String sortMode = null;
     JComboBox<String> sorter;
-    boolean dateEnabled;
+    boolean dateEnabled = false;
 
     guiDir() {
-        buttonPanel = new JToolBar() {
-            public Insets getInsets() {
-                return new Insets(0, 0, 0, 0);
-            }
-        };
-        currDirPanel = new JToolBar() {
-            public Insets getInsets() {
-                return new Insets(0, 0, 0, 0);
-            }
-        };
         popupMenu = new JPopupMenu();
-        props = new JMenuItem("Properties");
-        sortMode = null;
         String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
         sorter = new JComboBox<>(sortTypes);
-        dateEnabled = false;
-        jsp = new JScrollPane(jl);
-        currentPopup = null;
     }
 
     public void guiInit() {
         setLayout(new BorderLayout());
-        buttonManager();
-        JPanelManager();
         MouseListener mouseListener = new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 if (JFtp.uiBlocked) {
@@ -91,10 +99,8 @@ public class guiDir extends DirComponent {
 
                     String tgt = (String) jl.getSelectedValue().toString();
 
-                    if (index < 0) {
-                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
+                    if (index < 0 || (dirEntry == null) || (dirEntry.length < index) ||
                             (dirEntry[index] == null)) {
-                        return;
                     } else {
                         currentPopup = dirEntry[index];
                         popupMenu.show(e.getComponent(), e.getX(), e.getY());
@@ -138,13 +144,13 @@ public class guiDir extends DirComponent {
                 }
             }
         };
-        AdjustmentListener adjustmentListener = new AdjustmentListener() {
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                jsp.repaint();
-                jsp.revalidate();
-            }
+        AdjustmentListener adjustmentListener = e -> {
+            jsp.repaint();
+            jsp.revalidate();
         };
-
+        buttonManager();
+//        createButtonPanel();
+        JPanelManager();
         jspManager(adjustmentListener);
         table.getSelectionModel().addListSelectionListener(this);
         table.addMouseListener(mouseListener);
@@ -153,8 +159,6 @@ public class guiDir extends DirComponent {
         if (Settings.IS_JAVA_1_6) buttonPanel.remove(sorter);
 
         setVisible(true);
-
-
     }
 
     public void doChdir(String path) {
@@ -241,7 +245,7 @@ public class guiDir extends DirComponent {
         }
     }
 
-    public void buttonManager() {
+    private void buttonManager() {
         buttonPanel.setFloatable(false);
         deleteButton = new HImageButton(Settings.deleteImage, deleteString,
                 "Delete selected", (ActionListener) this);
@@ -264,12 +268,88 @@ public class guiDir extends DirComponent {
         cdUpButton = new HImageButton(Settings.cdUpImage, cdUpString,
                 "Go to Parent Directory", (ActionListener) this);
         cdUpButton.setToolTipText("Go to Parent Directory");
+//        rnButton = new HImageButton(Settings.textFileImage, rnString,
+//                "Rename selected file or directory", this);
+//        rnButton.setToolTipText("Rename selected");
+//
+////        list.setToolTipText("Show remote listing...");
+////        transferType.setToolTipText("Toggle transfer type...");
+//
+//        cmdButton = new HImageButton(Settings.cmdImage, cmdString,
+//                "Execute remote command", this);
+//        cmdButton.setToolTipText("Execute remote command");
+//
+//        downloadButton = new HImageButton(Settings.downloadImage,
+//                downloadString, "Download selected",
+//                this);
+//        downloadButton.setToolTipText("Download selected");
+//
+//        queueButton = new HImageButton(Settings.queueImage, queueString,
+//                "Queue selected", this);
+//        queueButton.setToolTipText("Queue selected");
+
 
     }
 
-    public void JPanelManager() {
+    public void createButtonPanel() {
+        label.setText("Filesystem: " + StringUtils.cutPath(path));
+
+        buttonPanel.add(sorter);
+
+
+        buttonPanel.add(new JLabel("  "));
+
+        buttonPanel.add(refreshButton);
+        buttonPanel.add(new JLabel("  "));
+
+//        buttonPanel.add(cpButton);
+        buttonPanel.add(rnButton);
+        buttonPanel.add(mkdirButton);
+
+        buttonPanel.add(cdButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(cdUpButton);
+        buttonPanel.add(new JLabel("  "));
+
+//        buttonPanel.add(zipButton);
+        buttonPanel.add(new JLabel("              "));
+
+        buttonPanel.setVisible(true);
+
+        buttonPanel.setSize(getSize().width - 10, 32);
+
+        sorter.addActionListener((ActionListener) this);
+
+//        buttonPanel.add(new JLabel("           "));
+//        buttonPanel.add(queueButton);
+//
+//        buttonPanel.add(new JLabel("    "));
+//
+//        buttonPanel.add(refreshButton);
+//        buttonPanel.add(new JLabel("  "));
+//        buttonPanel.add(rnButton);
+//        buttonPanel.add(mkdirButton);
+//        buttonPanel.add(cdButton);
+//        buttonPanel.add(deleteButton);
+//        buttonPanel.add(cdUpButton);
+//        buttonPanel.add(new JLabel("  "));
+//
+//        buttonPanel.add(cmdButton);
+//        buttonPanel.add(list);
+//        buttonPanel.add(transferType);
+
+        buttonPanel.add(sorter);
+
+        buttonPanel.setVisible(true);
+
+        buttonPanel.setSize(getSize().width - 10, 32);
+
+    }
+
+
+    private void JPanelManager() {
         currDirPanel.setFloatable(false);
-        label.setSize(getSize().width - 10, 24);
+        label.setSize(getSize().width - 10, 24); //set label width
         currDirPanel.add(label);
         currDirPanel.setSize(getSize().width - 10, 32);
         label.setSize(getSize().width - 20, 24);
@@ -279,7 +359,7 @@ public class guiDir extends DirComponent {
 
     }
 
-    public void jspManager(AdjustmentListener adjustmentListener){
+    private void jspManager(AdjustmentListener adjustmentListener){
         jsp = new JScrollPane(table);
         jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
         jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
@@ -290,6 +370,22 @@ public class guiDir extends DirComponent {
 
     }
 
+    void flowLayoutInit(FlowLayout f, JMenuItem runFile, JMenuItem viewFile) {
+        f.setHgap(1); // Sets the horizontal gap between components and between the components and the borders of the Container
+        f.setVgap(2); // Sets the vertical gap between components and between the components and the borders of the Container
+
+        buttonPanel.setLayout(f); // defines the container for the button panel
+        buttonPanel.setMargin(new Insets(0, 0, 0, 0)); // sets the margin for the button panel view
+
+        if (runFile != null && viewFile != null) {
+            runFile.addActionListener((ActionListener) this); //adds an action listener to the runfile menu item
+            viewFile.addActionListener((ActionListener) this); //adds an action listener to the viewfile menu item
+            popupMenu.add(runFile); // adds the runfile to the J-popup-menu
+            popupMenu.add(viewFile); // adds the viewfile to the J-popup-menu
+        }
+        props.addActionListener((ActionListener) this); // adds the properties to the J-popup-menu
+        popupMenu.add(props); // adds the properties to the J-popup-menu
+    }
+
+
 }
-
-

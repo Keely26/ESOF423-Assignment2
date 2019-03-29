@@ -79,15 +79,14 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         ActionListener,
         ConnectionListener,
         KeyListener {
-    static final String cmdString = "cmd";
-    static final String downloadString = "<-";
+    private static final String cmdString = "cmd";
+    private static final String downloadString = "<-";
+    private static final String queueString = "que";
 
-    static final String queueString = "que";
+    private HImageButton cmdButton;
 
-    HImageButton cmdButton;
-
-    HImageButton downloadButton;
-    HImageButton queueButton;
+    private HImageButton downloadButton;
+    private HImageButton queueButton;
 
     private int tmpindex = -1;
     private HImageButton list = new HImageButton(Settings.listImage, "list",
@@ -132,16 +131,18 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
     public void gui_init() {
         super.guiInit();
 
-        FlowLayout f = new FlowLayout(FlowLayout.LEFT);
-        f.setHgap(1);
-        f.setVgap(2);
+        FlowLayout f = new FlowLayout(FlowLayout.LEFT); // defines the container for the remote directory view
+        super.flowLayoutInit(f, null, null);
+//        f.setHgap(1); // Sets the horizontal gap between components and between the components and the borders of the Container
+//        f.setVgap(2); // Sets the vertical gap between components and between the components and the borders of the Container
+//
+//        buttonPanel.setLayout(f); // defines the container for the button panel
+//        buttonPanel.setMargin(new Insets(0, 0, 0, 0)); // sets the margin for the button panel view
+//
+//        props.addActionListener(this); //adds an action listener to the properties button
+//        popupMenu.add(props);// adds the properties to the J-popup-menu
 
-        buttonPanel.setLayout(f);
-        buttonPanel.setMargin(new Insets(0, 0, 0, 0));
-
-        props.addActionListener(this);
-        popupMenu.add(props);
-
+        // button initialization for remote directory specific buttons
         rnButton = new HImageButton(Settings.textFileImage, rnString,
                 "Rename selected file or directory", this);
         rnButton.setToolTipText("Rename selected");
@@ -161,8 +162,10 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         queueButton = new HImageButton(Settings.queueImage, queueString,
                 "Queue selected", this);
         queueButton.setToolTipText("Queue selected");
+        // --------------------------------------------------------------
 
         setLabel();
+        super.createButtonPanel();
         //TODO: create new button panel manager class
         buttonPanel.add(new JLabel("           "));
         buttonPanel.add(queueButton);
@@ -208,7 +211,7 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         jl.setCellRenderer(new DirCellRenderer());
         jl.setVisibleRowCount(Settings.visibleFileRows);
         jl.setDragEnabled(true);
-        jl.setDropTarget(JFtp.statusP.jftp.dropTarget);
+        jl.setDropTarget(JFtp.dropTarget);
 
     }
 
