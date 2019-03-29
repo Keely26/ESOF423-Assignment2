@@ -204,11 +204,6 @@ public class guiDir extends DirComponent {
 
         TableUtils.tryToEnableRowSorting(table);
 
-        if (Settings.IS_JAVA_1_6) {
-            //sorter.setVisible(false);
-            buttonPanel.remove(sorter);
-        }
-
         setVisible(true);
     }
 
@@ -283,7 +278,7 @@ public class guiDir extends DirComponent {
         return mouseListener;
     }
 
-    private AdjustmentListener adjustmentListenerInit(){
+    private AdjustmentListener adjustmentListenerInit() {
         AdjustmentListener adjustmentListener = new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 jsp.repaint();
@@ -293,12 +288,11 @@ public class guiDir extends DirComponent {
         return adjustmentListener;
     }
 
+    public void doChdir(String path) {
+    }
 
-    public void doChdir(String path) { }
-
-    public void showContentWindow(String url, DirEntry d){}
-
-
+    public void showContentWindow(String url, DirEntry d) {
+    }
 
 
 }

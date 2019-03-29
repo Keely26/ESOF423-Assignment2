@@ -4,7 +4,6 @@
     <list default="true" id="1bde84db-eabd-42a4-818c-bd776f5ca31e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.54327565">
+    <splitter split-orientation="vertical" split-proportion="0.8">
       <split-first>
         <splitter split-orientation="horizontal" split-proportion="0.5">
           <split-first>
@@ -22,8 +21,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="122">
-                      <caret line="339" column="13" selection-start-line="339" selection-start-column="13" selection-end-line="339" selection-end-column="13" />
+                    <state relative-caret-position="351">
+                      <caret line="231" column="55" selection-start-line="231" selection-start-column="55" selection-end-line="231" selection-end-column="55" />
                       <folding>
                         <element signature="e#5037#5321#0" />
                         <element signature="e#5327#5593#0" />
@@ -52,15 +51,6 @@
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="60">
-                      <caret line="87" selection-start-line="87" selection-end-line="87" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
             </leaf>
           </split-first>
           <split-second>
@@ -68,8 +58,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="198">
-                      <caret line="319" column="13" selection-start-line="319" selection-start-column="13" selection-end-line="319" selection-end-column="13" />
+                    <state relative-caret-position="334">
+                      <caret line="221" column="25" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="25" />
                       <folding>
                         <element signature="e#4996#5177#0" />
                         <element signature="e#5183#5449#0" />
@@ -105,8 +95,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="206">
-                  <caret line="296" column="39" selection-start-line="296" selection-start-column="39" selection-end-line="296" selection-end-column="39" />
+                <state relative-caret-position="1880">
+                  <caret line="211" column="25" lean-forward="true" selection-start-line="211" selection-start-column="25" selection-end-line="211" selection-end-column="25" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -249,7 +239,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553882976671" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553883281206" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -302,12 +292,12 @@
       <workItem from="1553532470178" duration="1170000" />
       <workItem from="1553534411462" duration="719000" />
       <workItem from="1553636103825" duration="7862000" />
-      <workItem from="1553878599026" duration="4309000" />
+      <workItem from="1553878599026" duration="4553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35683000" />
+    <option name="totallyTimeSpent" value="35927000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -322,8 +312,8 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7816245" visible="true" weight="0.031473532" />
-      <window_info id="Structure" order="1" sideWeight="0.2183755" side_tool="true" visible="true" weight="0.031473532" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7813333" visible="true" weight="0.031473532" />
+      <window_info id="Structure" order="1" sideWeight="0.21866667" side_tool="true" visible="true" weight="0.031473532" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -332,13 +322,13 @@
       <window_info id="JRebel" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.09518072" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.38795182" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Duplicate detector" order="7" sideWeight="0.49928468" weight="0.16435644" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.15180723" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.09638554" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.4253012" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.036144577" />
@@ -587,15 +577,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="1880">
+          <caret line="211" column="25" lean-forward="true" selection-start-line="211" selection-start-column="25" selection-end-line="211" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="339" column="13" selection-start-line="339" selection-start-column="13" selection-end-line="339" selection-end-column="13" />
+        <state relative-caret-position="351">
+          <caret line="231" column="55" selection-start-line="231" selection-start-column="55" selection-end-line="231" selection-end-column="55" />
           <folding>
             <element signature="e#5037#5321#0" />
             <element signature="e#5327#5593#0" />
@@ -625,8 +618,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="319" column="13" selection-start-line="319" selection-start-column="13" selection-end-line="319" selection-end-column="13" />
+        <state relative-caret-position="334">
+          <caret line="221" column="25" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="25" />
           <folding>
             <element signature="e#4996#5177#0" />
             <element signature="e#5183#5449#0" />

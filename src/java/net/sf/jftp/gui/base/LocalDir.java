@@ -174,10 +174,6 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         popupMenu.add(props);
 
         label.setText("Filesystem: " + StringUtils.cutPath(path));
-        //HERE
-
-//        p.setLayout(new BorderLayout());
-//        p.add("North", currDirPanel);
 
         buttonPanel.add(sorter);
 
@@ -223,98 +219,12 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         jl.setCellRenderer(new DirCellRenderer());
         jl.setVisibleRowCount(Settings.visibleFileRows);
 
-        // add this becaus we need to fetch only doubleclicks
-//        MouseListener mouseListener = new MouseAdapter() {
-//            public void mousePressed(MouseEvent e) {
-//                if (JFtp.uiBlocked) {
-//                    return;
-//                }
-//
-//                if (e.isPopupTrigger() || SwingUtilities.isRightMouseButton(e)) {
-//                    int index = jl.getSelectedIndex() - 1;
-//
-//                    if (index < -1) {
-//                        return;
-//                    }
-//
-//                    String tgt = (String) jl.getSelectedValue().toString();
-//
-//                    if (index < 0) {
-//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-//                            (dirEntry[index] == null)) {
-//                        return;
-//                    } else {
-//                        currentPopup = dirEntry[index];
-//                        popupMenu.show(e.getComponent(), e.getX(), e.getY());
-//                    }
-//                }
-//            }
-//
-//            public void mouseClicked(MouseEvent e) {
-//                if (JFtp.uiBlocked) {
-//                    return;
-//                }
-//
-//                TableUtils.copyTableSelectionsToJList(jl, table);
-//
-//                //System.out.println("DirEntryListener::");
-//                if (e.getClickCount() == 2) {
-//                    //System.out.println("2xList selection: "+jl.getSelectedValue().toString());
-//                    int index = jl.getSelectedIndex() - 1;
-//
-//                    // mousewheel bugfix, ui refresh bugfix
-//                    if (index < -1) {
-//                        return;
-//                    }
-//
-//                    String tgt = (String) jl.getSelectedValue().toString();
-//
-//                    //System.out.println("List selection: "+index);
-//                    if (index < 0) {
-//                        doChdir(path + tgt);
-//                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
-//                            (dirEntry[index] == null)) {
-//                        return;
-//                    } else if (dirEntry[index].isDirectory()) {
-//                        doChdir(path + tgt);
-//                    } else {
-//                        showContentWindow(path + dirEntry[index].toString(),
-//                                dirEntry[index]);
-//
-//                        //blockedTransfer(index);
-//                    }
-//                }
-//            }
-//        };
+        if (Settings.IS_JAVA_1_6) {
+            //sorter.setVisible(false);
+            buttonPanel.remove(sorter);
+        }
 
 
-//        jsp = new JScrollPane(table);
-//        table.getSelectionModel().addListSelectionListener(this);
-//        table.addMouseListener(mouseListener);
-
-//        AdjustmentListener adjustmentListener = new AdjustmentListener() {
-//            public void adjustmentValueChanged(AdjustmentEvent e) {
-//                jsp.repaint();
-//                jsp.revalidate();
-//            }
-//        };
-
-//        jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
-//        jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
-//
-//
-//        jsp.setSize(getSize().width - 20, getSize().height - 72);
-//        add("Center", jsp);
-//        jsp.setVisible(true);
-//
-//        TableUtils.tryToEnableRowSorting(table);
-//
-//        if (Settings.IS_JAVA_1_6) {
-//            //sorter.setVisible(false);
-//            buttonPanel.remove(sorter);
-//        }
-//
-//        setVisible(true);
     }
 
     @Override
