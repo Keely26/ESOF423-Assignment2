@@ -143,56 +143,56 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
 //        popupMenu.add(props);// adds the properties to the J-popup-menu
 
         // button initialization for remote directory specific buttons
-        rnButton = new HImageButton(Settings.textFileImage, rnString,
-                "Rename selected file or directory", this);
-        rnButton.setToolTipText("Rename selected");
-
-        list.setToolTipText("Show remote listing...");
-        transferType.setToolTipText("Toggle transfer type...");
-
-        cmdButton = new HImageButton(Settings.cmdImage, cmdString,
-                "Execute remote command", this);
-        cmdButton.setToolTipText("Execute remote command");
-
-        downloadButton = new HImageButton(Settings.downloadImage,
-                downloadString, "Download selected",
-                this);
-        downloadButton.setToolTipText("Download selected");
-
-        queueButton = new HImageButton(Settings.queueImage, queueString,
-                "Queue selected", this);
-        queueButton.setToolTipText("Queue selected");
+//        rnButton = new HImageButton(Settings.textFileImage, rnString,
+//                "Rename selected file or directory", this);
+//        rnButton.setToolTipText("Rename selected");
+//
+//        list.setToolTipText("Show remote listing...");
+//        transferType.setToolTipText("Toggle transfer type...");
+//
+//        cmdButton = new HImageButton(Settings.cmdImage, cmdString,
+//                "Execute remote command", this);
+//        cmdButton.setToolTipText("Execute remote command");
+//
+//        downloadButton = new HImageButton(Settings.downloadImage,
+//                downloadString, "Download selected",
+//                this);
+//        downloadButton.setToolTipText("Download selected");
+//
+//        queueButton = new HImageButton(Settings.queueImage, queueString,
+//                "Queue selected", this);
+//        queueButton.setToolTipText("Queue selected");
         // --------------------------------------------------------------
 
         setLabel();
         super.createButtonPanel();
         //TODO: create new button panel manager class
-        buttonPanel.add(new JLabel("           "));
-        buttonPanel.add(queueButton);
-
-        buttonPanel.add(new JLabel("    "));
-
-        buttonPanel.add(refreshButton);
-        buttonPanel.add(new JLabel("  "));
-        buttonPanel.add(rnButton);
-        buttonPanel.add(mkdirButton);
-        buttonPanel.add(cdButton);
-        buttonPanel.add(deleteButton);
-        buttonPanel.add(cdUpButton);
-        buttonPanel.add(new JLabel("  "));
-
-        buttonPanel.add(cmdButton);
-        buttonPanel.add(list);
-        buttonPanel.add(transferType);
-
-        buttonPanel.add(sorter);
-
-        buttonPanel.setVisible(true);
-
-        buttonPanel.setSize(getSize().width - 10, 32);
-
-        //TODO: create new method accounting for changes to second button
-        p.add("South", buttonPanel);
+//        buttonPanel.add(new JLabel("           "));
+//        buttonPanel.add(queueButton);
+//
+//        buttonPanel.add(new JLabel("    "));
+//
+//        buttonPanel.add(refreshButton);
+//        buttonPanel.add(new JLabel("  "));
+//        buttonPanel.add(rnButton);
+//        buttonPanel.add(mkdirButton);
+//        buttonPanel.add(cdButton);
+//        buttonPanel.add(deleteButton);
+//        buttonPanel.add(cdUpButton);
+//        buttonPanel.add(new JLabel("  "));
+//
+//        buttonPanel.add(cmdButton);
+//        buttonPanel.add(list);
+//        buttonPanel.add(transferType);
+//
+//        buttonPanel.add(sorter);
+//
+//        buttonPanel.setVisible(true);
+//
+//        buttonPanel.setSize(getSize().width - 10, 32);
+//
+//        //TODO: create new method accounting for changes to second button
+//        p.add("South", buttonPanel);
 
         JPanel second = new JPanel();
         second.setLayout(new BorderLayout());

@@ -85,13 +85,13 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         ConnectionListener,
         KeyListener {
 
-//    static final String uploadString = "->";
-//    static final String zipString = "zip";
-//    static final String cpString = "cp";
-//
-//    HImageButton uploadButton;
-//    HImageButton zipButton;
-//    HImageButton cpButton;
+    static final String uploadString = "->";
+    static final String zipString = "zip";
+    static final String cpString = "cp";
+
+    HImageButton uploadButton;
+    HImageButton zipButton;
+    HImageButton cpButton;
 
     private int tmpindex = -1;
     private Hashtable dummy = new Hashtable();
@@ -142,54 +142,54 @@ public class LocalDir extends guiDir implements ListSelectionListener,
 //        popupMenu.add(props); // adds the properties to the J-popup-menu
 
         // button initialization for remote directory specific buttons
-        uploadButton = new HImageButton(Settings.uploadImage, uploadString,
-                "Upload selected", this);
-        uploadButton.setToolTipText("Upload selected");
-
-        zipButton = new HImageButton(Settings.zipFileImage, zipString,
-                "Add selected to new zip file", this);
-        zipButton.setToolTipText("Create zip");
-
-        cpButton = new HImageButton(Settings.copyImage, cpString,
-                "Copy selected files to another local dir",
-                this);
-        cpButton.setToolTipText("Local copy selected");
-
-        rnButton = new HImageButton(Settings.textFileImage, rnString,
-                "Rename selected file or directory", this);
-        rnButton.setToolTipText("Rename selected");
+//        uploadButton = new HImageButton(Settings.uploadImage, uploadString,
+//                "Upload selected", this);
+//        uploadButton.setToolTipText("Upload selected");
+//
+//        zipButton = new HImageButton(Settings.zipFileImage, zipString,
+//                "Add selected to new zip file", this);
+//        zipButton.setToolTipText("Create zip");
+//
+//        cpButton = new HImageButton(Settings.copyImage, cpString,
+//                "Copy selected files to another local dir",
+//                this);
+//        cpButton.setToolTipText("Local copy selected");
+//
+//        rnButton = new HImageButton(Settings.textFileImage, rnString,
+//                "Rename selected file or directory", this);
+//        rnButton.setToolTipText("Rename selected");
         // --------------------------------------------------------------
         super.createButtonPanel();
         //TODO: create new button panel manager class
-        label.setText("Filesystem: " + StringUtils.cutPath(path));
-
-        buttonPanel.add(sorter);
-
-        buttonPanel.add(new JLabel("  "));
-
-        buttonPanel.add(refreshButton);
-        buttonPanel.add(new JLabel("  "));
-
-        buttonPanel.add(cpButton);
-        buttonPanel.add(rnButton);
-        buttonPanel.add(mkdirButton);
-
-        buttonPanel.add(cdButton);
-        buttonPanel.add(deleteButton);
-        buttonPanel.add(cdUpButton);
-        buttonPanel.add(new JLabel("  "));
-
-        buttonPanel.add(zipButton);
-        buttonPanel.add(new JLabel("              "));
-
-        buttonPanel.setVisible(true);
-
-        buttonPanel.setSize(getSize().width - 10, 32);
-
-        sorter.addActionListener(this);
-
-        //TODO: create new method accounting for changes to second button
-        p.add("South", buttonPanel);
+//        label.setText("Filesystem: " + StringUtils.cutPath(path));
+//
+//        buttonPanel.add(sorter);
+//
+//        buttonPanel.add(new JLabel("  "));
+//
+//        buttonPanel.add(refreshButton);
+//        buttonPanel.add(new JLabel("  "));
+//
+//        buttonPanel.add(cpButton);
+//        buttonPanel.add(rnButton);
+//        buttonPanel.add(mkdirButton);
+//
+//        buttonPanel.add(cdButton);
+//        buttonPanel.add(deleteButton);
+//        buttonPanel.add(cdUpButton);
+//        buttonPanel.add(new JLabel("  "));
+//
+//        buttonPanel.add(zipButton);
+//        buttonPanel.add(new JLabel("              "));
+//
+//        buttonPanel.setVisible(true);
+//
+//        buttonPanel.setSize(getSize().width - 10, 32);
+//
+//        sorter.addActionListener(this);
+//
+//        //TODO: create new method accounting for changes to second button
+//        p.add("South", buttonPanel);
 
         JPanel second = new JPanel();
         second.setLayout(new BorderLayout());
