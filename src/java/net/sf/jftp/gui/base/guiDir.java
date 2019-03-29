@@ -86,8 +86,6 @@ public class guiDir extends DirComponent {
     public JMenuItem viewFile = new JMenuItem("View file");
     // ------------------------------------------------------------------------------
 
-    guiDir() {
-    }
 
     public void guiInit(FlowLayout f) {
         currDirPanel.setFloatable(false);
@@ -110,9 +108,6 @@ public class guiDir extends DirComponent {
 
         p.setLayout(new BorderLayout());
         p.add("North", currDirPanel);
-
-//        addButtons();
-
     }
 
     public void buttonDeclarations() {
@@ -173,20 +168,6 @@ public class guiDir extends DirComponent {
                 "Rename selected file or directory", (ActionListener) this);
         rnButton.setToolTipText("Rename selected");
         // ------------------------------------------------------------------------------
-    }
-
-    public void addButtons() {
-        buttonPanel.add(rnButton);
-        buttonPanel.add(mkdirButton);
-
-        buttonPanel.add(cdButton);
-        buttonPanel.add(deleteButton);
-        buttonPanel.add(cdUpButton);
-        buttonPanel.add(new JLabel("  "));
-
-    }
-
-    private void JPanelManager() {
     }
 
     private void jScrollPanelInit(MouseListener mouseListener, AdjustmentListener adjustmentListener) {
@@ -288,8 +269,7 @@ public class guiDir extends DirComponent {
         return adjustmentListener;
     }
 
-    public void doChdir(String path) {
-    }
+    public void doChdir(String path) { }
 
     public void showContentWindow(String url, DirEntry d) {
     }

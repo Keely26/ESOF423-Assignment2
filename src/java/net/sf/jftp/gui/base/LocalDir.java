@@ -84,57 +84,6 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         ActionListener,
         ConnectionListener,
         KeyListener {
-    //    static final String deleteString = "rm";
-//    static final String mkdirString = "mkdir";
-//    static final String refreshString = "fresh";
-//    static final String cdString = "cd";
-//    static final String cmdString = "cmd";
-//    static final String downloadString = "<-";
-//    static final String uploadString = "->";
-//    static final String zipString = "zip";
-//    static final String cpString = "cp";
-//    static final String rnString = "rn";
-//    static final String cdUpString = "cdUp";
-//    HImageButton deleteButton;
-//    HImageButton mkdirButton;
-//    HImageButton cmdButton;
-//    HImageButton refreshButton;
-//    HImageButton cdButton;
-//    HImageButton uploadButton;
-//    HImageButton zipButton;
-//    HImageButton cpButton;
-//    HImageButton rnButton;
-//    private DirCanvas label = new DirCanvas(this);
-//    private boolean pathChanged = true;
-//    private boolean firstGui = true;
-//    private int pos = 0;
-//    private JPanel p = new JPanel();
-//    private JToolBar buttonPanel = new JToolBar() {
-//        public Insets getInsets() {
-//            return new Insets(0, 0, 0, 0);
-//        }
-//    };
-//
-//    private JToolBar currDirPanel = new JToolBar() {
-//        public Insets getInsets() {
-//            return new Insets(0, 0, 0, 0);
-//        }
-//    };
-//
-//    private DefaultListModel jlm;
-//    private JScrollPane jsp = new JScrollPane(jl);
-//    private int tmpindex = -1;
-//    private Hashtable dummy = new Hashtable();
-//    private JPopupMenu popupMenu = new JPopupMenu();
-//    private JMenuItem runFile = new JMenuItem("Launch file");
-//    private JMenuItem viewFile = new JMenuItem("View file");
-//    private JMenuItem props = new JMenuItem("Properties");
-//    private DirEntry currentPopup = null;
-//    private String sortMode = null;
-//    String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
-//    private JComboBox sorter = new JComboBox(sortTypes);
-//    //    HImageButton cdUpButton;
-//    private boolean dateEnabled = false;
 
     /**
      * LocalDir constructor.
@@ -211,7 +160,6 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         second.add("East", uploadButton);
 
         add("North", second);
-
 
         setDirList(true);
         jlm = new DefaultListModel();
