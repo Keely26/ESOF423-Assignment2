@@ -87,7 +87,7 @@ public class guiDir extends DirComponent {
     /**
      *
      */
-    void guiInit(FlowLayout f) {
+    void gui_init(FlowLayout f) {
         currDirPanel.setFloatable(false);
         buttonPanel.setFloatable(false);
         MouseListener mouseListener = mouseListenerInit();

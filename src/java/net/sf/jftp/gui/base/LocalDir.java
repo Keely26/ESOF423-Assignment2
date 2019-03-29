@@ -16,11 +16,9 @@
 package net.sf.jftp.gui.base;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Insets;
 import java.awt.event.*;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -31,41 +29,27 @@ import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.Hashtable;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import net.sf.jftp.JFtp;
 import net.sf.jftp.config.SaveSet;
 import net.sf.jftp.config.Settings;
-import net.sf.jftp.gui.base.dir.DirCanvas;
 import net.sf.jftp.gui.base.dir.DirCellRenderer;
-import net.sf.jftp.gui.base.dir.DirComponent;
 import net.sf.jftp.gui.base.dir.DirEntry;
 import net.sf.jftp.gui.base.dir.DirLister;
 import net.sf.jftp.gui.base.dir.DirPanel;
-import net.sf.jftp.gui.base.dir.TableUtils;
-import net.sf.jftp.gui.framework.HImage;
-import net.sf.jftp.gui.framework.HImageButton;
 import net.sf.jftp.gui.framework.HPanel;
 import net.sf.jftp.gui.tasks.Creator;
-import net.sf.jftp.gui.tasks.ImageViewer;
 import net.sf.jftp.gui.tasks.NameChooser;
 import net.sf.jftp.gui.tasks.RemoteCommand;
 import net.sf.jftp.net.BasicConnection;
@@ -114,7 +98,7 @@ public class LocalDir extends guiDir implements ListSelectionListener,
     public void gui_init() {
         setLayout(new BorderLayout());
         FlowLayout f = new FlowLayout(FlowLayout.RIGHT);
-        super.guiInit(f);
+        super.gui_init(f);
 
         runFile.addActionListener(this);
         viewFile.addActionListener(this);
