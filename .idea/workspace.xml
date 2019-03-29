@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bde84db-eabd-42a4-818c-bd776f5ca31e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" afterDir="false" />
@@ -14,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.6335484">
+    <splitter split-orientation="vertical" split-proportion="0.37875">
       <split-first>
         <splitter split-orientation="horizontal" split-proportion="0.5">
           <split-first>
@@ -22,11 +23,12 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="87">
-                      <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="26" />
+                    <state relative-caret-position="-555">
+                      <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
                       <folding>
                         <element signature="e#5037#5321#0" />
                         <element signature="e#5327#5593#0" />
+                        <element signature="e#5599#13957#0" />
                         <element signature="e#11695#11914#0" />
                         <element signature="e#14188#14225#0" />
                         <element signature="e#14231#14755#0" />
@@ -54,6 +56,21 @@
                   </provider>
                 </entry>
               </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/awt/FlowLayout.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="252">
+                      <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
+                      <folding>
+                        <element signature="e#5905#5906#0" expanded="true" />
+                        <element signature="e#5938#5939#0" expanded="true" />
+                        <element signature="e#9200#9201#0" expanded="true" />
+                        <element signature="e#9232#9233#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
             </leaf>
           </split-first>
           <split-second>
@@ -61,11 +78,12 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="727">
-                      <caret line="162" selection-start-line="162" selection-end-line="162" />
+                    <state relative-caret-position="119">
+                      <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
                       <folding>
                         <element signature="e#4996#5177#0" />
                         <element signature="e#5183#5449#0" />
+                        <element signature="e#5455#13165#0" />
                         <element signature="e#10861#11080#0" />
                         <element signature="e#13396#13433#0" />
                         <element signature="e#13439#14027#0" />
@@ -100,16 +118,15 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="46">
-                  <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+                <state relative-caret-position="300">
+                  <caret line="260" column="4" selection-start-line="260" selection-start-column="4" selection-end-line="260" selection-end-column="4" />
                   <folding>
-                    <element signature="e#2981#3105#0" />
                     <element signature="e#3134#3226#0" />
                     <element signature="e#3291#3514#0" />
-                    <element signature="e#7359#7594#0" />
-                    <element signature="e#3234#3307#0" />
-                    <element signature="e#7258#9644#0" />
-                    <element signature="e#10138#10429#0" />
+                    <element signature="e#7103#7743#0" />
+                    <element signature="method#mousePressed#0;class#7559:10080" />
+                    <element signature="method#mouseClicked#0;class#7559:10080" />
+                    <element signature="e#10078#10405#0" />
                     <element signature="e#10948#10989#0" />
                     <element signature="e#10888#10949#0" />
                   </folding>
@@ -146,15 +163,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/framework/HImageButton.java" />
-        <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" />
         <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java" />
+        <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java" />
         <option value="$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="412" />
-    <option name="width" value="1028" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -252,7 +268,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553887402787" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553897466647" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -305,12 +321,12 @@
       <workItem from="1553532470178" duration="1170000" />
       <workItem from="1553534411462" duration="719000" />
       <workItem from="1553636103825" duration="7862000" />
-      <workItem from="1553878599026" duration="6237000" />
+      <workItem from="1553878599026" duration="13341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37611000" />
+    <option name="totallyTimeSpent" value="44715000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -322,11 +338,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7819355" visible="true" weight="0.031473532" />
-      <window_info id="Structure" order="1" sideWeight="0.21806452" side_tool="true" visible="true" weight="0.031473532" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78125" visible="true" weight="0.07796852" />
+      <window_info id="Structure" order="1" sideWeight="0.21875" side_tool="true" visible="true" weight="0.07796852" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -335,13 +351,13 @@
       <window_info id="JRebel" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.06626506" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.036144577" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Duplicate detector" order="7" sideWeight="0.49928468" weight="0.16435644" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.22409639" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.0746988" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.4253012" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.036144577" />
@@ -501,19 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/awt/FlowLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="306" column="13" selection-start-line="306" selection-start-column="13" selection-end-line="306" selection-end-column="22" />
-          <folding>
-            <element signature="e#5905#5906#0" expanded="true" />
-            <element signature="e#5938#5939#0" expanded="true" />
-            <element signature="e#9200#9201#0" expanded="true" />
-            <element signature="e#9232#9233#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/javax/swing/JToolBar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="590">
@@ -588,13 +591,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/awt/FlowLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
+          <folding>
+            <element signature="e#5905#5906#0" expanded="true" />
+            <element signature="e#5938#5939#0" expanded="true" />
+            <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#9232#9233#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-555">
+          <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+          <folding>
+            <element signature="e#5037#5321#0" />
+            <element signature="e#5327#5593#0" />
+            <element signature="e#5599#13957#0" />
+            <element signature="e#11695#11914#0" />
+            <element signature="e#14188#14225#0" />
+            <element signature="e#14231#14755#0" />
+            <element signature="e#14761#15481#0" />
+            <element signature="e#15487#19359#0" />
+            <element signature="e#19365#26910#0" />
+            <element signature="e#26916#27707#0" />
+            <element signature="e#27713#27964#0" />
+            <element signature="e#27970#28229#0" />
+            <element signature="e#28235#29433#0" />
+            <element signature="e#29439#30913#0" />
+            <element signature="e#30919#31167#0" />
+            <element signature="e#31173#32147#0" />
+            <element signature="e#32153#33610#0" />
+            <element signature="e#33616#35329#0" />
+            <element signature="e#35335#36059#0" />
+            <element signature="e#36065#40174#0" />
+            <element signature="e#40180#40485#0" />
+            <element signature="e#40491#40953#0" />
+            <element signature="e#40959#41696#0" />
+            <element signature="e#41702#42230#0" />
+            <element signature="e#42236#45043#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/LocalDir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="162" selection-start-line="162" selection-end-line="162" />
+        <state relative-caret-position="119">
+          <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
           <folding>
             <element signature="e#4996#5177#0" />
             <element signature="e#5183#5449#0" />
+            <element signature="e#5455#13165#0" />
             <element signature="e#10861#11080#0" />
             <element signature="e#13396#13433#0" />
             <element signature="e#13439#14027#0" />
@@ -621,51 +672,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/guiDir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+        <state relative-caret-position="300">
+          <caret line="260" column="4" selection-start-line="260" selection-start-column="4" selection-end-line="260" selection-end-column="4" />
           <folding>
-            <element signature="e#2981#3105#0" />
             <element signature="e#3134#3226#0" />
             <element signature="e#3291#3514#0" />
-            <element signature="e#7359#7594#0" />
-            <element signature="e#3234#3307#0" />
-            <element signature="e#7258#9644#0" />
-            <element signature="e#10138#10429#0" />
+            <element signature="e#7103#7743#0" />
+            <element signature="method#mousePressed#0;class#7559:10080" />
+            <element signature="method#mouseClicked#0;class#7559:10080" />
+            <element signature="e#10078#10405#0" />
             <element signature="e#10948#10989#0" />
             <element signature="e#10888#10949#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/net/sf/jftp/gui/base/RemoteDir.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="26" />
-          <folding>
-            <element signature="e#5037#5321#0" />
-            <element signature="e#5327#5593#0" />
-            <element signature="e#11695#11914#0" />
-            <element signature="e#14188#14225#0" />
-            <element signature="e#14231#14755#0" />
-            <element signature="e#14761#15481#0" />
-            <element signature="e#15487#19359#0" />
-            <element signature="e#19365#26910#0" />
-            <element signature="e#26916#27707#0" />
-            <element signature="e#27713#27964#0" />
-            <element signature="e#27970#28229#0" />
-            <element signature="e#28235#29433#0" />
-            <element signature="e#29439#30913#0" />
-            <element signature="e#30919#31167#0" />
-            <element signature="e#31173#32147#0" />
-            <element signature="e#32153#33610#0" />
-            <element signature="e#33616#35329#0" />
-            <element signature="e#35335#36059#0" />
-            <element signature="e#36065#40174#0" />
-            <element signature="e#40180#40485#0" />
-            <element signature="e#40491#40953#0" />
-            <element signature="e#40959#41696#0" />
-            <element signature="e#41702#42230#0" />
-            <element signature="e#42236#45043#0" />
           </folding>
         </state>
       </provider>

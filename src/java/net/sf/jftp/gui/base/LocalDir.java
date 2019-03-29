@@ -108,7 +108,8 @@ public class LocalDir extends guiDir implements ListSelectionListener,
     }
 
     /**
-     * Creates the gui and adds the MouseListener etc.
+     * Creates table for file display, adds buttons to the button panel,
+     * and makes it all visible within defined layout or local directory.
      */
     public void gui_init() {
         setLayout(new BorderLayout());
@@ -125,28 +126,20 @@ public class LocalDir extends guiDir implements ListSelectionListener,
         label.setText("Filesystem: " + StringUtils.cutPath(path));
 
         buttonPanel.add(sorter);
-
         buttonPanel.add(new JLabel("  "));
-
         buttonPanel.add(refreshButton);
         buttonPanel.add(new JLabel("  "));
-
         buttonPanel.add(cpButton);
         buttonPanel.add(rnButton);
         buttonPanel.add(mkdirButton);
-
         buttonPanel.add(cdButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(cdUpButton);
         buttonPanel.add(new JLabel("  "));
-
         buttonPanel.add(zipButton);
         buttonPanel.add(new JLabel("              "));
-
         buttonPanel.setVisible(true);
-
         buttonPanel.setSize(getSize().width - 10, 32);
-
         sorter.addActionListener(this);
 
         p.add("South", buttonPanel);

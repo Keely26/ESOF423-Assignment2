@@ -15,15 +15,15 @@ import java.awt.event.*;
 import java.util.Hashtable;
 
 public class guiDir extends DirComponent {
-    static final String deleteString = "rm";
-    static final String mkdirString = "mkdir";
-    static final String refreshString = "fresh";
-    static final String cdString = "cd";
-    static final String cmdString = "cmd";
-    static final String downloadString = "<-";
-    static final String uploadString = "->";
+    private static final String deleteString = "rm";
+    private static final String mkdirString = "mkdir";
+    private static final String refreshString = "fresh";
+    private static final String cdString = "cd";
+    private static final String cmdString = "cmd";
+    private static final String downloadString = "<-";
+    private static final String uploadString = "->";
     static final String rnString = "rn";
-    static final String cdUpString = "cdUp";
+    private static final String cdUpString = "cdUp";
 
     HImageButton deleteButton;
     HImageButton mkdirButton;
@@ -35,69 +35,73 @@ public class guiDir extends DirComponent {
     HImageButton rnButton;
 
     public DirCanvas label = new DirCanvas(this);
-    public boolean pathChanged = true;
-    public boolean firstGui = true;
-    public int pos = 0;
+    boolean pathChanged = true;
+    boolean firstGui = true;
     public JPanel p = new JPanel();
-    public JToolBar buttonPanel = new JToolBar() {
+    JToolBar buttonPanel = new JToolBar() {
         public Insets getInsets() {
             return new Insets(0, 0, 0, 0);
         }
     };
 
-    public JToolBar currDirPanel = new JToolBar() {
+    private JToolBar currDirPanel = new JToolBar() {
         public Insets getInsets() {
             return new Insets(0, 0, 0, 0);
         }
     };
 
-    public DefaultListModel jlm;
-    public JScrollPane jsp = new JScrollPane(jl);
-    public int tmpindex = -1;
-    public JPopupMenu popupMenu = new JPopupMenu();
-    public JMenuItem props = new JMenuItem("Properties");
-    public DirEntry currentPopup = null;
-    public String sortMode = null;
-    String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
-    public JComboBox sorter = new JComboBox(sortTypes);
-    //    HImageButton cdUpButton;
-    public boolean dateEnabled = false;
+    DefaultListModel jlm;
+    private JScrollPane jsp = new JScrollPane(jl);
+    int tmpindex = -1;
+    JPopupMenu popupMenu = new JPopupMenu();
+    JMenuItem props = new JMenuItem("Properties");
+    DirEntry currentPopup = null;
+    String sortMode = null;
+    private String[] sortTypes = new String[]{"Normal", "Reverse", "Size", "Size/Re"};
+    JComboBox<String> sorter = new JComboBox<>(sortTypes);
+    boolean dateEnabled = false;
 
     // --- RemoteDir ----------------------------------------------------------------
-    static final String queueString = "que";
+    private static final String queueString = "que";
     HImageButton downloadButton;
     HImageButton queueButton;
 
     public HImageButton list = new HImageButton(Settings.listImage, "list",
             "Show remote listing...", (ActionListener) this);
-    public HImageButton transferType = new HImageButton(Settings.typeImage,
+    HImageButton transferType = new HImageButton(Settings.typeImage,
             "type",
             "Toggle transfer type...",
             (ActionListener) this);
     // ------------------------------------------------------------------------------
 
     // --- LocalDir -----------------------------------------------------------------
-    static final String zipString = "zip";
-    static final String cpString = "cp";
+    private static final String zipString = "zip";
+    private static final String cpString = "cp";
     HImageButton zipButton;
     HImageButton cpButton;
-    public Hashtable dummy = new Hashtable();
-    public JMenuItem runFile = new JMenuItem("Launch file");
-    public JMenuItem viewFile = new JMenuItem("View file");
+    JMenuItem runFile = new JMenuItem("Launch file");
+    JMenuItem viewFile = new JMenuItem("View file");
     // ------------------------------------------------------------------------------
 
 
-    public void guiInit(FlowLayout f) {
+    /**
+     *
+     */
+    void guiInit(FlowLayout f) {
         currDirPanel.setFloatable(false);
         buttonPanel.setFloatable(false);
         MouseListener mouseListener = mouseListenerInit();
         AdjustmentListener adjustmentListener = adjustmentListenerInit();
-        flowLayoutInit(f);
+        f.setHgap(1);
+        f.setVgap(2);
         buttonPanelInit(f);
         jScrollPanelInit(mouseListener, adjustmentListener);
     }
 
-    public void buttonPanelInit(FlowLayout f) {
+    /**
+     * Defines size, margins, and location of button panel
+     */
+    private void buttonPanelInit(FlowLayout f) {
         buttonPanel.setLayout(f);
         buttonPanel.setMargin(new Insets(0, 0, 0, 0));
         buttonDeclarations();
@@ -110,7 +114,11 @@ public class guiDir extends DirComponent {
         p.add("North", currDirPanel);
     }
 
-    public void buttonDeclarations() {
+    /**
+     * Defines all button declarations including the button label, the image displayed
+     * and tool tip text.
+     */
+    private void buttonDeclarations() {
         deleteButton = new HImageButton(Settings.deleteImage, deleteString,
                 "Delete  selected", (ActionListener) this);
         deleteButton.setToolTipText("Delete selected");
@@ -153,7 +161,6 @@ public class guiDir extends DirComponent {
         uploadButton = new HImageButton(Settings.uploadImage, uploadString,
                 "Upload selected", (ActionListener) this);
         uploadButton.setToolTipText("Upload selected");
-        //uploadButton.setBackground(new Color(192,192,192));
 
         zipButton = new HImageButton(Settings.zipFileImage, zipString,
                 "Add selected to new zip file", (ActionListener) this);
@@ -170,6 +177,9 @@ public class guiDir extends DirComponent {
         // ------------------------------------------------------------------------------
     }
 
+    /**
+     * Handles functionality allowing users to scroll through table
+     */
     private void jScrollPanelInit(MouseListener mouseListener, AdjustmentListener adjustmentListener) {
         jsp = new JScrollPane(table);
         table.getSelectionModel().addListSelectionListener(this);
@@ -177,7 +187,6 @@ public class guiDir extends DirComponent {
 
         jsp.getHorizontalScrollBar().addAdjustmentListener(adjustmentListener);
         jsp.getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
-
 
         jsp.setSize(getSize().width - 20, getSize().height - 72);
         add("Center", jsp);
@@ -188,31 +197,19 @@ public class guiDir extends DirComponent {
         setVisible(true);
     }
 
-    void flowLayoutInit(FlowLayout f) {
-        f.setHgap(1);
-        f.setVgap(2);
-    }
-
+    /**
+     * Defines a new mouse listener
+     */
     private MouseListener mouseListenerInit() {
-        MouseListener mouseListener = new MouseAdapter() {
+        return new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                if (JFtp.uiBlocked) {
-                    return;
-                }
+                if (JFtp.uiBlocked) return;
 
                 if (e.isPopupTrigger() || SwingUtilities.isRightMouseButton(e)) {
                     int index = jl.getSelectedIndex() - 1;
-
-                    if (index < -1) {
-                        return;
-                    }
-
-                    String tgt = (String) jl.getSelectedValue().toString();
-
-                    if (index < 0) {
-                    } else if ((dirEntry == null) || (dirEntry.length < index) ||
+                    if (index < -1) return;
+                    if (index < 0 || (dirEntry == null) || (dirEntry.length < index) ||
                             (dirEntry[index] == null)) {
-                        return;
                     } else {
                         currentPopup = dirEntry[index];
                         popupMenu.show(e.getComponent(), e.getX(), e.getY());
@@ -221,58 +218,50 @@ public class guiDir extends DirComponent {
             }
 
             public void mouseClicked(MouseEvent e) {
-                if (JFtp.uiBlocked) {
-                    return;
-                }
+                if (JFtp.uiBlocked) return;
 
                 TableUtils.copyTableSelectionsToJList(jl, table);
-
-                //System.out.println("DirEntryListener::");
                 if (e.getClickCount() == 2) {
-                    //System.out.println("2xList selection: "+jl.getSelectedValue().toString());
                     int index = jl.getSelectedIndex() - 1;
 
-                    // mousewheel bugfix, ui refresh bugfix
-                    if (index < -1) {
-                        return;
-                    }
+                    if (index < -1) return;                                     // mousewheel bug fix
 
-                    String tgt = (String) jl.getSelectedValue().toString();
+                    String tgt = jl.getSelectedValue().toString();
 
-                    //System.out.println("List selection: "+index);
                     if (index < 0) {
                         doChdir(path + tgt);
                     } else if ((dirEntry == null) || (dirEntry.length < index) ||
                             (dirEntry[index] == null)) {
-                        return;
                     } else if (dirEntry[index].isDirectory()) {
                         doChdir(path + tgt);
+                    } else if (dirEntry[index].isLink()) {
+                        if (!con.chdir(path + tgt)) {
+                            showContentWindow(path +
+                                            dirEntry[index].toString(),
+                                    dirEntry[index]);
+                        }
                     } else {
                         showContentWindow(path + dirEntry[index].toString(),
                                 dirEntry[index]);
-
-                        //blockedTransfer(index);
                     }
                 }
             }
         };
-        return mouseListener;
     }
 
+    /**
+     * Defines a new adjustment listener
+     */
     private AdjustmentListener adjustmentListenerInit() {
-        AdjustmentListener adjustmentListener = new AdjustmentListener() {
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                jsp.repaint();
-                jsp.revalidate();
-            }
+        return e -> {
+            jsp.repaint();
+            jsp.revalidate();
         };
-        return adjustmentListener;
     }
 
-    public void doChdir(String path) { }
+    public void doChdir(String path) {
+    }
 
     public void showContentWindow(String url, DirEntry d) {
     }
-
-
 }

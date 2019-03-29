@@ -109,7 +109,8 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
     }
 
     /**
-     * Creates the gui and adds the MouseListener etc.
+     * Creates table for file display, adds buttons to the button panel,
+     * and makes it all visible within defined layout for remote directory.
      */
     public void gui_init() {
         setLayout(new BorderLayout());
@@ -119,10 +120,6 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         props.addActionListener(this);
         popupMenu.add(props);
 
-        rnButton = new HImageButton(Settings.textFileImage, rnString,
-                "Rename selected file or directory", this);
-        rnButton.setToolTipText("Rename selected");
-
         list.setToolTipText("Show remote listing...");
         transferType.setToolTipText("Toggle transfer type...");
 
@@ -130,9 +127,7 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
 
         buttonPanel.add(new JLabel("           "));
         buttonPanel.add(queueButton);
-
         buttonPanel.add(new JLabel("    "));
-
         buttonPanel.add(refreshButton);
         buttonPanel.add(new JLabel("  "));
         buttonPanel.add(rnButton);
@@ -141,15 +136,11 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         buttonPanel.add(deleteButton);
         buttonPanel.add(cdUpButton);
         buttonPanel.add(new JLabel("  "));
-
         buttonPanel.add(cmdButton);
         buttonPanel.add(list);
         buttonPanel.add(transferType);
-
         buttonPanel.add(sorter);
-
         buttonPanel.setVisible(true);
-
         buttonPanel.setSize(getSize().width - 10, 32);
 
         p.add("South", buttonPanel);
@@ -161,21 +152,18 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         downloadButton.setPreferredSize(new Dimension(50, 50));
         downloadButton.setMaximumSize(new Dimension(50, 50));
         second.add("West", downloadButton);
-
         add("North", second);
-
         sorter.addActionListener(this);
 
-        //setDirList(true);
         jlm = new DefaultListModel();
         jl = new JList(jlm);
         jl.setCellRenderer(new DirCellRenderer());
         jl.setVisibleRowCount(Settings.visibleFileRows);
         jl.setDragEnabled(true);
-        jl.setDropTarget(JFtp.statusP.jftp.dropTarget);
+        jl.setDropTarget(JFtp.dropTarget);
 
+        // removes sorting button from panel
         if (Settings.IS_JAVA_1_6) {
-            //sorter.setVisible(false);
             buttonPanel.remove(sorter);
         }
     }
@@ -470,7 +458,7 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
                 JFtp.dQueue.addFtp(tmp[i].toString());
             }
         } else if (e.getSource() == props) {
-            JFtp.statusP.jftp.clearLog();
+            JFtp.clearLog();
 
             int x = currentPopup.getPermission();
             String tmp;
@@ -495,11 +483,7 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
         } else if (e.getSource() == sorter) {
             sortMode = (String) sorter.getSelectedItem();
 
-            if (sortMode.equals("Date")) {
-                Settings.showDateNoSize = true;
-            } else {
-                Settings.showDateNoSize = false;
-            }
+            Settings.showDateNoSize = sortMode.equals("Date");
 
             fresh();
         } else if (e.getActionCommand().equals("cdUp")) {
@@ -859,8 +843,8 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
             }
 
             Log.out("direct ftp transfer started (download)");
-            ((FtpConnection) JFtp.localDir.getCon()).upload(entry.file,
-                    ((FtpConnection) JFtp.remoteDir.getCon()).getDownloadInputStream(path +
+            JFtp.localDir.getCon().upload(entry.file,
+                    JFtp.remoteDir.getCon().getDownloadInputStream(path +
                             entry.file));
         } else if (con instanceof FtpConnection &&
                 JFtp.localDir.getCon() instanceof FilesystemConnection) {
@@ -906,7 +890,7 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
                 FileInputStream in = new FileInputStream(f);
                 JFtp.localDir.getCon().setLocalPath(path);
                 Log.debug(JFtp.localDir.getCon().getPWD());
-                ((FtpConnection) JFtp.localDir.getCon()).upload(entry.file, in);
+                JFtp.localDir.getCon().upload(entry.file, in);
             } catch (FileNotFoundException ex) {
                 Log.debug("Error: File not found: " + path + entry.file);
             }
@@ -1097,7 +1081,7 @@ public class RemoteDir extends guiDir implements ListSelectionListener,
                 return;
             }
 
-            String tmp = ((DirEntry) o).toString();
+            String tmp = o.toString();
 
             if (tmp.endsWith("/")) {
                 con.chdir(tmp);
